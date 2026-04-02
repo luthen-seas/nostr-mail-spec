@@ -281,7 +281,7 @@ NIP-72 defines Reddit-style communities with designated moderators. See the [NIP
 **How moderation works:**
 
 1. A community is defined by a kind 34550 event listing moderators (in `p` tags with "moderator" role).
-2. Users post to the community via kind 1111 (NIP-22 comment) events scoped to the community.
+2. Users post to the community via kind 1400 (NIP-22 comment) events scoped to the community.
 3. Moderators publish kind 4550 approval events for posts they want visible.
 4. Clients display only approved posts (or show unapproved posts with a lower priority / warning).
 

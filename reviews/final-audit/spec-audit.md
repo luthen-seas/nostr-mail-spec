@@ -77,8 +77,8 @@
 
 #### FA-011
 - **Severity:** MEDIUM
-- **Section:** Drafts (Kind 30015), lines 724-756
-- **Description:** Kind 30015 is specified with a `subject` tag on the outer (unencrypted) event "as a convenience for listing drafts without decryption." The spec correctly notes this "leaks metadata," but the SHOULD-level recommendation to omit it for privacy contradicts the convenience purpose. More importantly, the spec does not define what the encrypted `content` contains beyond "the draft rumor JSON." If the draft is a partial message (no recipients yet, no subject), what is the minimum valid content? Can the content be empty? What if the encrypted content cannot be decrypted (key rotation)?
+- **Section:** Drafts (Kind 30016), lines 724-756
+- **Description:** Kind 30016 is specified with a `subject` tag on the outer (unencrypted) event "as a convenience for listing drafts without decryption." The spec correctly notes this "leaks metadata," but the SHOULD-level recommendation to omit it for privacy contradicts the convenience purpose. More importantly, the spec does not define what the encrypted `content` contains beyond "the draft rumor JSON." If the draft is a partial message (no recipients yet, no subject), what is the minimum valid content? Can the content be empty? What if the encrypted content cannot be decrypted (key rotation)?
 - **Recommendation:** Define the minimum valid draft content (e.g., "The encrypted content MUST be a valid JSON object. It MAY omit fields that have not been composed yet. At minimum, it MUST contain `kind: 15`."). Specify behavior when decryption fails: "If the draft content cannot be decrypted (e.g., after key rotation), clients SHOULD display the draft as inaccessible and offer deletion."
 
 #### FA-012

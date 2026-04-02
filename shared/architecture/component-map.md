@@ -33,7 +33,7 @@
 | **State & Sync** | | | |
 | Mailbox state format | Distributed Systems | Protocol Architect | Kind 10099 structure and partitioning |
 | Multi-device sync | Distributed Systems | Systems Programmer | Conflict resolution, delta sync |
-| Draft storage | Protocol Architect | Distributed Systems | Kind 30015 format |
+| Draft storage | Protocol Architect | Distributed Systems | Kind 30016 format |
 | **Attachments** | | | |
 | Blossom integration | Systems Programmer | Crypto Designer | Encrypted upload/download, hash references |
 | Attachment tags | Protocol Architect | Email Expert | Tag format for file references |

@@ -249,9 +249,9 @@ The review covers the NOSTR Mail protocol as a composed system. Each component w
 
 - **Severity**: Informational
 - **Component**: State
-- **Description**: Draft messages stored as encrypted events (e.g., kind 30015 addressable events) on relays are encrypted to the user's own pubkey with NIP-44. A relay operator cannot decrypt the content. However, the relay operator can observe that draft events exist, track their creation and modification timestamps, observe their sizes, and detect when drafts are deleted (or replaced with sent messages). This metadata reveals the user's composition patterns.
+- **Description**: Draft messages stored as encrypted events (e.g., kind 30016 addressable events) on relays are encrypted to the user's own pubkey with NIP-44. A relay operator cannot decrypt the content. However, the relay operator can observe that draft events exist, track their creation and modification timestamps, observe their sizes, and detect when drafts are deleted (or replaced with sent messages). This metadata reveals the user's composition patterns.
 - **Attack Steps**:
-  1. User stores drafts on a relay as self-encrypted kind 30015 events.
+  1. User stores drafts on a relay as self-encrypted kind 30016 events.
   2. Relay operator logs draft event creation timestamps, sizes, and `d` tag values.
   3. Relay operator correlates: draft created at 09:00, modified at 09:15, deleted at 09:17, followed by a kind 1059 event at 09:18 addressed to Bob.
   4. The operator infers: the user spent 17 minutes composing a message to Bob.

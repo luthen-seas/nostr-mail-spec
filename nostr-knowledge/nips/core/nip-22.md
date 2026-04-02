@@ -104,7 +104,7 @@ NIP-22 uses a dual-case tag convention:
 **Top-level comment on a blog post (kind:30023):**
 ```json
 {
-  "kind": 1111,
+  "kind": 1400,
   "content": "Great article, really enjoyed the section on decentralization.",
   "tags": [
     ["A", "30023:f7234bd4c1394dda46d09f35bd384dd30cc552ad5541990f98844fb06676e9ca:my-blog-post", "wss://relay.example.com"],
@@ -122,7 +122,7 @@ NIP-22 uses a dual-case tag convention:
 **Reply to an existing comment (nested comment):**
 ```json
 {
-  "kind": 1111,
+  "kind": 1400,
   "content": "I agree, that was the best part.",
   "tags": [
     ["A", "30023:f7234bd4c1394dda46d09f35bd384dd30cc552ad5541990f98844fb06676e9ca:my-blog-post", "wss://relay.example.com"],
@@ -139,7 +139,7 @@ NIP-22 uses a dual-case tag convention:
 **Comment on a NIP-94 file metadata event (kind:1063):**
 ```json
 {
-  "kind": 1111,
+  "kind": 1400,
   "content": "Beautiful photo!",
   "tags": [
     ["E", "ccc333ddd444eee555fff666aaa777bbb888ccc999ddd000eee111fff222aaa333", "wss://relay.example.com", "bf2376e17ba4ec269d10fcc996a4746b451152be9031fa48e74553dde5526bce"],
@@ -155,7 +155,7 @@ NIP-22 uses a dual-case tag convention:
 **Comment on a website URL:**
 ```json
 {
-  "kind": 1111,
+  "kind": 1400,
   "content": "Interesting read on decentralization.",
   "tags": [
     ["I", "https://example.com/decentralization-article"],
@@ -169,7 +169,7 @@ NIP-22 uses a dual-case tag convention:
 **Comment on a podcast episode:**
 ```json
 {
-  "kind": 1111,
+  "kind": 1400,
   "content": "Great episode, the guest was really insightful.",
   "tags": [
     ["I", "podcast:guid:abc123-def456-ghi789"],
@@ -183,7 +183,7 @@ NIP-22 uses a dual-case tag convention:
 **Reply to a comment on a podcast episode:**
 ```json
 {
-  "kind": 1111,
+  "kind": 1400,
   "content": "Totally agree about the guest!",
   "tags": [
     ["I", "podcast:guid:abc123-def456-ghi789"],

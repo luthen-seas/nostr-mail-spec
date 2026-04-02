@@ -406,7 +406,7 @@ Messages themselves sync naturally:
 
 ### Draft Sync
 
-Drafts (kind 30015, addressable) sync across devices:
+Drafts (kind 30016, addressable) sync across devices:
 - Addressable events: latest per `d` tag wins
 - Encrypted to self → only user's devices can read
 - Natural conflict resolution via `created_at`
@@ -591,7 +591,7 @@ Despite the different protocol, the UI should feel like email:
 |---------|---------------|
 | Inbox | List of kind 1059 events, decrypted, sorted by date |
 | Sent | Self-addressed copies, decrypted |
-| Drafts | Kind 30015 events, decrypted |
+| Drafts | Kind 30016 events, decrypted |
 | Folders | Tags in kind 10099 state event |
 | Search | Local FTS index |
 | Compose | Standard compose form → rumor → seal → wrap |

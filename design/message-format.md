@@ -405,7 +405,7 @@ Drafts use an addressable event kind (30000-39999 range) so they can be updated:
 
 ```json
 {
-  "kind": 30015,
+  "kind": 30016,
   "pubkey": "<user-pubkey>",
   "created_at": 1711840000,
   "tags": [
@@ -656,6 +656,6 @@ The NOSTR version is orders of magnitude smaller. The attachment lives on Blosso
 | 10050 | DM Relay List | Replaceable | User's preferred inbox relays |
 | 10098 | Auto-Responder | Replaceable | Out-of-office / auto-response config |
 | 10099 | Mailbox State | Replaceable | Read/flagged/folder state |
-| 30015 | Mail Draft | Addressable | Encrypted draft messages |
+| 30016 | Mail Draft | Addressable | Encrypted draft messages |
 | 39000 | Mailing List | Addressable | Distribution list definition |
 | 5 | Deletion | Regular | Delete request for sent/received mail |

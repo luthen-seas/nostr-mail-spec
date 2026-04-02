@@ -46,7 +46,7 @@ Users need to organize the Nostr ecosystem: who they follow, what they mute, whi
 | 30005 | Curation sets (video)  | Groups of videos                                                         | `"e"` (kind:21 videos) |
 | 30006 | Curation sets (picture)| Groups of pictures                                                       | `"e"` (kind:20 pictures) |
 | 30007 | Kind mute sets         | Mute pubkeys by kind (`d` tag MUST be the kind string)                   | `"p"` (pubkeys) |
-| 30015 | Interest sets          | Interest topics as hashtags                                              | `"t"` (hashtags) |
+| 30016 | Interest sets          | Interest topics as hashtags                                              | `"t"` (hashtags) |
 | 30030 | Emoji sets             | Categorized emoji groups                                                 | `"emoji"` (NIP-30) |
 | 30063 | Release artifact sets  | Software release artifacts                                               | `"e"` (kind:1063 file metadata), `"a"` (software app event) |
 | 30267 | App curation sets      | References to software applications                                      | `"a"` (software application event) |

@@ -220,7 +220,7 @@
       "title": "Comment",
       "status": "active",
       "category": "social",
-      "description": "Defines kind 1111 for comments that can be attached to any event kind, web URLs, or other external content, enabling universal commenting.",
+      "description": "Defines kind 1400 for comments that can be attached to any event kind, web URLs, or other external content, enabling universal commenting.",
       "event_kinds": [1111],
       "depends_on": ["01", "10"],
       "depended_by": [],

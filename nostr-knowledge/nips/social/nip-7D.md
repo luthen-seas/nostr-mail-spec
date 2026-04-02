@@ -62,7 +62,7 @@ While `kind:1` short text notes work well for microblogging, they lack structure
 **Reply to a thread:**
 ```json
 {
-  "kind": 1111,
+  "kind": 1400,
   "content": "I've been using Damus on iOS and really enjoy the clean UI and fast relay connections.",
   "tags": [
     ["E", "thread-event-id", "wss://relay.example.com", "thread-author-pubkey"],
@@ -81,7 +81,7 @@ While `kind:1` short text notes work well for microblogging, they lack structure
 **Reply to another reply (still referencing root):**
 ```json
 {
-  "kind": 1111,
+  "kind": 1400,
   "content": "Damus is great! Have you tried the zap feature?",
   "tags": [
     ["E", "thread-event-id", "wss://relay.example.com", "thread-author-pubkey"],

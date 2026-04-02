@@ -374,7 +374,7 @@
       "status": "active"
     },
     {
-      "kind": 1111,
+      "kind": 1400,
       "name": "Comment",
       "nip": "22",
       "description": "Comment on any event kind, URL, or other addressable content",
@@ -1136,7 +1136,7 @@
       "status": "active"
     },
     {
-      "kind": 11111,
+      "kind": 14001,
       "name": "Transport Method Announcement",
       "nip": "Nostr Epoxy",
       "description": "Announcement of available transport methods for Nostr relay connections",
@@ -1344,7 +1344,7 @@
       "status": "active"
     },
     {
-      "kind": 30015,
+      "kind": 30016,
       "name": "Interest Sets",
       "nip": "51",
       "description": "Named sets of interest topics/hashtags",

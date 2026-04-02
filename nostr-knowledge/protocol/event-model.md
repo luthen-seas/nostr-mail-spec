@@ -356,7 +356,7 @@ The `d` tag value is the first value in the first `d` tag found in the event's t
 | 30007 | Kind Mute Sets | 51 |
 | 30008 | Profile Badges | 58 |
 | 30009 | Badge Definition | 58 |
-| 30015 | Interest Sets | 51 |
+| 30016 | Interest Sets | 51 |
 | 30017 | Create/Update Stall | 15 |
 | 30018 | Create/Update Product | 15 |
 | 30019 | Marketplace UI/UX | 15 |

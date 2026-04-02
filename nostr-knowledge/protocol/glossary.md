@@ -571,7 +571,7 @@ A relay-to-client message (`["CLOSED", <subscription_id>, <message>]`) indicatin
 - **See Also**: REQ, EOSE, Subscription, AUTH
 
 ### Comment
-A kind 1111 event that provides a universal commenting mechanism for any NOSTR event, web URL, or external resource. Comments use specific tags to reference their target and support threading. NIP-22 unifies the commenting pattern across all content types (articles, videos, images, etc.) rather than requiring each content kind to define its own reply mechanism.
+A kind 1400 event that provides a universal commenting mechanism for any NOSTR event, web URL, or external resource. Comments use specific tags to reference their target and support threading. NIP-22 unifies the commenting pattern across all content types (articles, videos, images, etc.) rather than requiring each content kind to define its own reply mechanism.
 - **NIP Reference**: NIP-22
 - **See Also**: Thread, e-tag, Text Note, Long-form Content
 

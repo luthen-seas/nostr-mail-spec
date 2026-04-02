@@ -53,7 +53,7 @@ Social networking features: follows, reactions, reposts, threads, lists, and com
 | [10](social/nip-10.md) | Text Notes and Threads | Active | Threading conventions for kind 1 using e/p tag markers |
 | [14](social/nip-14.md) | Subject tag in text events | Active | Email-like subject lines for text notes |
 | [18](social/nip-18.md) | Reposts | Active | Kind 6 (text reposts) and kind 16 (generic reposts) |
-| [22](social/nip-22.md) | Comment | Active | Kind 1111 for universal commenting on any content |
+| [22](social/nip-22.md) | Comment | Active | Kind 1400 for universal commenting on any content |
 | [23](social/nip-23.md) | Long-form Content | Active | Kind 30023 for articles/blog posts, kind 30024 for drafts |
 | [25](social/nip-25.md) | Reactions | Active | Kind 7 for reactions to events, kind 17 for website reactions |
 | [27](social/nip-27.md) | Text Note References | Active | Inline references using nostr: URI scheme in content |

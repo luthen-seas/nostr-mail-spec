@@ -87,7 +87,7 @@ Open social feeds lack topical organization and quality control. Users want them
 **Top-level post to a community:**
 ```json
 {
-  "kind": 1111,
+  "kind": 1400,
   "tags": [
     ["A", "34550:community-owner-pubkey:bitcoin-dev", "wss://relay.example.com"],
     ["a", "34550:community-owner-pubkey:bitcoin-dev", "wss://relay.example.com"],
@@ -107,7 +107,7 @@ Open social feeds lack topical organization and quality control. Users want them
 **Nested reply to a community post:**
 ```json
 {
-  "kind": 1111,
+  "kind": 1400,
   "tags": [
     ["A", "34550:community-owner-pubkey:bitcoin-dev", "wss://relay.example.com"],
     ["P", "community-owner-pubkey", "wss://relay.example.com"],

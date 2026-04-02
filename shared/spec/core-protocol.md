@@ -54,7 +54,7 @@ NOSTR Mail is a protocol for asynchronous, encrypted, self-sovereign messaging b
 | 10097 | Spam Policy | Replaceable | User's anti-spam configuration |
 | 10098 | Auto-Responder | Replaceable | Out-of-office configuration |
 | 10099 | Mailbox State | Addressable | Read/flagged/folder state |
-| 30015 | Mail Draft | Addressable | Encrypted draft messages |
+| 30016 | Mail Draft | Addressable | Encrypted draft messages |
 | 39000 | Mailing List | Addressable | Distribution list definition |
 
 ## Open Questions
