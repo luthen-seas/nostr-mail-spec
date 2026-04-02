@@ -4,6 +4,24 @@
 
 ---
 
+## Summary (Updated 2026-04-02)
+
+| Tier | Total Tasks | Complete | Blocked | Remaining |
+|------|------------|---------|---------|-----------|
+| H1: Build & Run | 17 | 12 | 3 (Go) | 2 |
+| H2: Verify & Validate | 16 | 9 | 4 (Go, live relay) | 3 |
+| H3: Gold Standard | 40 | 5 | — | 35 |
+
+**Key results:**
+- 146/146 tests passing (89 unit/integration + 57 NIP-44 official vectors)
+- 0 TypeScript compile errors (both SDK and bridge)
+- 0 GPL contamination (all deps MIT/Apache/ISC/BSD)
+- 0 strict-mode errors
+- Kind numbers verified free: 1400, 1401, 10097, 10099, 30016
+- Tag names verified compatible: `subject` (NIP-14), no collisions on `reply`, `thread`, `cashu`, `folder`, `message-id`
+
+---
+
 ## Status Key
 - `[ ]` Not started
 - `[~]` In progress
