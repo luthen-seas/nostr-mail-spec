@@ -1,0 +1,584 @@
+{
+  "description": "Complete registry of NOSTR event tags as defined across all NIPs",
+  "last_updated": "2026-03-31",
+  "source": "nostr-protocol/nips",
+  "indexed_tags_note": "Single-letter tags (a-z, A-Z) are indexed by relays and can be used in filters as #<letter>",
+  "tags": [
+    {
+      "tag": "-",
+      "name": "Protected Event",
+      "nip": "70",
+      "format": ["-", ""],
+      "description": "Marks an event as protected, signaling to relays that it should not be published by other pubkeys.",
+      "indexed": false
+    },
+    {
+      "tag": "a",
+      "name": "Replaceable Event Coordinates",
+      "nip": "01",
+      "format": ["a", "<kind>:<pubkey>:<d-tag-value>", "<relay-url>"],
+      "description": "References a replaceable event by its coordinates (kind, pubkey, and d-tag value). Used for parameterized replaceable events.",
+      "indexed": true
+    },
+    {
+      "tag": "A",
+      "name": "Root Address",
+      "nip": "22",
+      "format": ["A", "<kind>:<pubkey>:<d-tag-value>", "<relay-url>"],
+      "description": "References the root replaceable event address in a comment thread.",
+      "indexed": true
+    },
+    {
+      "tag": "c",
+      "name": "Commit ID",
+      "nip": "34",
+      "format": ["c", "<commit-id>"],
+      "description": "References a git commit by its SHA hash.",
+      "indexed": true
+    },
+    {
+      "tag": "d",
+      "name": "Identifier",
+      "nip": "01",
+      "format": ["d", "<identifier>"],
+      "description": "Identifier tag for parameterized replaceable events. Distinguishes events of the same kind from the same pubkey.",
+      "indexed": true
+    },
+    {
+      "tag": "D",
+      "name": "Day",
+      "nip": "52",
+      "format": ["D", "<YYYY-MM-DD>"],
+      "description": "Specifies a calendar day for time-based events.",
+      "indexed": true
+    },
+    {
+      "tag": "e",
+      "name": "Event Reference",
+      "nip": "01, 10",
+      "format": ["e", "<event-id>", "<relay-url>", "<marker>", "<pubkey>"],
+      "description": "References another event by its 32-byte hex ID. Markers: 'reply' (direct parent), 'root' (thread root). Relay URL can be empty string if unknown. Pubkey is the author of the referenced event, supporting outbox model relay lookups.",
+      "indexed": true
+    },
+    {
+      "tag": "E",
+      "name": "Root Event ID",
+      "nip": "22",
+      "format": ["E", "<event-id>", "<relay-url>"],
+      "description": "References the root event ID in a comment thread.",
+      "indexed": true
+    },
+    {
+      "tag": "f",
+      "name": "Currency Code",
+      "nip": "69",
+      "format": ["f", "<currency-code>"],
+      "description": "Specifies a currency code for marketplace or trade-related events.",
+      "indexed": true
+    },
+    {
+      "tag": "g",
+      "name": "Geohash",
+      "nip": "52",
+      "format": ["g", "<geohash>"],
+      "description": "Specifies a geographic location using a geohash string.",
+      "indexed": true
+    },
+    {
+      "tag": "h",
+      "name": "Group ID",
+      "nip": "29",
+      "format": ["h", "<group-id>"],
+      "description": "Identifies a relay-based group by its group ID.",
+      "indexed": true
+    },
+    {
+      "tag": "i",
+      "name": "External Identity",
+      "nip": "35, 39, 73",
+      "format": ["i", "<external-id>", "<proof>", "<url-hint>"],
+      "description": "References an external identity or identifier from outside sources. Proof and URL hint are optional and depend on context.",
+      "indexed": true
+    },
+    {
+      "tag": "I",
+      "name": "Root External Identity",
+      "nip": "22",
+      "format": ["I", "<external-id>"],
+      "description": "References the root external identity in a comment thread.",
+      "indexed": true
+    },
+    {
+      "tag": "k",
+      "name": "Kind",
+      "nip": "18, 25, 72, 73",
+      "format": ["k", "<kind-number>"],
+      "description": "References a specific event kind number. Used in reactions, reposts, and other events that operate on events of a specific kind.",
+      "indexed": true
+    },
+    {
+      "tag": "K",
+      "name": "Root Scope",
+      "nip": "22",
+      "format": ["K", "<kind-number>"],
+      "description": "Specifies the root scope kind in a comment thread.",
+      "indexed": true
+    },
+    {
+      "tag": "l",
+      "name": "Label",
+      "nip": "32, C0",
+      "format": ["l", "<label>", "<label-namespace>"],
+      "description": "Applies a label to an event. Can also specify language tags per NIP-C0. Must have a corresponding L tag for the namespace.",
+      "indexed": true
+    },
+    {
+      "tag": "L",
+      "name": "Label Namespace",
+      "nip": "32",
+      "format": ["L", "<namespace>"],
+      "description": "Declares the label namespace used by l tags in the same event. Required when using l tags.",
+      "indexed": true
+    },
+    {
+      "tag": "m",
+      "name": "MIME Type",
+      "nip": "94",
+      "format": ["m", "<mime-type>"],
+      "description": "Specifies the MIME type of a file or content (e.g., 'image/png', 'application/pdf').",
+      "indexed": true
+    },
+    {
+      "tag": "p",
+      "name": "Pubkey Reference",
+      "nip": "01, 02, 22",
+      "format": ["p", "<pubkey-hex>", "<relay-url>", "<petname>"],
+      "description": "References another user by their 32-byte hex pubkey. Used for mentions, replies (to notify participants), and contact lists. Relay URL and petname are optional.",
+      "indexed": true
+    },
+    {
+      "tag": "P",
+      "name": "Pubkey (Receiver)",
+      "nip": "22, 57",
+      "format": ["P", "<pubkey-hex>"],
+      "description": "References a pubkey, typically used for the receiver in zap receipts or comment threads.",
+      "indexed": true
+    },
+    {
+      "tag": "q",
+      "name": "Quote Repost",
+      "nip": "18",
+      "format": ["q", "<event-id>", "<relay-url>", "<pubkey-hex>"],
+      "description": "References an event being quote-reposted. Similar to e-tag but specifically for quote reposts.",
+      "indexed": true
+    },
+    {
+      "tag": "r",
+      "name": "Reference / Relay URL",
+      "nip": "24, 25, 65",
+      "format": ["r", "<url-or-relay-url>", "<marker>"],
+      "description": "Dual purpose: (1) References a web URL the event is referring to (NIP-24/25). (2) Specifies a relay URL with optional read/write marker for relay list metadata (NIP-65).",
+      "indexed": true
+    },
+    {
+      "tag": "s",
+      "name": "Status",
+      "nip": "69",
+      "format": ["s", "<status>"],
+      "description": "Specifies the status of a marketplace or trade-related event.",
+      "indexed": true
+    },
+    {
+      "tag": "t",
+      "name": "Hashtag",
+      "nip": "24, 34, 35",
+      "format": ["t", "<hashtag>"],
+      "description": "Applies a hashtag to the event. The value MUST be a lowercase string.",
+      "indexed": true
+    },
+    {
+      "tag": "u",
+      "name": "URL",
+      "nip": "61, 98",
+      "format": ["u", "<url>"],
+      "description": "Specifies a URL associated with the event.",
+      "indexed": true
+    },
+    {
+      "tag": "x",
+      "name": "Content Hash",
+      "nip": "35, 56",
+      "format": ["x", "<sha256-hash>"],
+      "description": "SHA-256 hash of referenced content for integrity verification.",
+      "indexed": true
+    },
+    {
+      "tag": "y",
+      "name": "Platform",
+      "nip": "69",
+      "format": ["y", "<platform>"],
+      "description": "Specifies the platform for marketplace or trade-related events.",
+      "indexed": true
+    },
+    {
+      "tag": "z",
+      "name": "Order Number",
+      "nip": "69",
+      "format": ["z", "<order-number>"],
+      "description": "Specifies an order number for marketplace or trade-related events.",
+      "indexed": true
+    },
+    {
+      "tag": "alt",
+      "name": "Alternative Summary",
+      "nip": "31",
+      "format": ["alt", "<summary-text>"],
+      "description": "Human-readable summary for events with specialized content. Allows clients that don't understand a specific event kind to display a fallback description.",
+      "indexed": false
+    },
+    {
+      "tag": "amount",
+      "name": "Amount",
+      "nip": "57",
+      "format": ["amount", "<millisatoshis>"],
+      "description": "Amount in millisatoshis (stringified integer). Used in zap requests and receipts.",
+      "indexed": false
+    },
+    {
+      "tag": "bolt11",
+      "name": "Lightning Invoice",
+      "nip": "57",
+      "format": ["bolt11", "<bolt11-invoice>"],
+      "description": "Contains a BOLT-11 Lightning Network invoice string.",
+      "indexed": false
+    },
+    {
+      "tag": "branch-name",
+      "name": "Branch Name",
+      "nip": "34",
+      "format": ["branch-name", "<branch-name>"],
+      "description": "Suggests a branch name for git-related events.",
+      "indexed": false
+    },
+    {
+      "tag": "challenge",
+      "name": "Auth Challenge",
+      "nip": "42",
+      "format": ["challenge", "<challenge-string>"],
+      "description": "Contains the challenge string received from a relay during NIP-42 authentication.",
+      "indexed": false
+    },
+    {
+      "tag": "client",
+      "name": "Client",
+      "nip": "89",
+      "format": ["client", "<name>", "<address>", "<relay-url>"],
+      "description": "Identifies the client application that created the event, including its name and optionally an address reference and relay URL.",
+      "indexed": false
+    },
+    {
+      "tag": "clone",
+      "name": "Git Clone URL",
+      "nip": "34",
+      "format": ["clone", "<git-clone-url>"],
+      "description": "Specifies a git clone URL for repository events.",
+      "indexed": false
+    },
+    {
+      "tag": "content-warning",
+      "name": "Content Warning",
+      "nip": "36",
+      "format": ["content-warning", "<reason>"],
+      "description": "Marks an event as containing sensitive content with an optional reason string. Clients should hide the content behind a warning.",
+      "indexed": false
+    },
+    {
+      "tag": "delegation",
+      "name": "Delegation",
+      "nip": "26",
+      "format": ["delegation", "<pubkey>", "<conditions>", "<delegation-token>"],
+      "description": "Indicates the event was delegated from another keypair. Contains the delegator's pubkey, conditions query string, and a signature token.",
+      "indexed": false
+    },
+    {
+      "tag": "dep",
+      "name": "Dependency",
+      "nip": "C0",
+      "format": ["dep", "<dependency-reference>"],
+      "description": "Specifies a required dependency for executable or application events.",
+      "indexed": false
+    },
+    {
+      "tag": "description",
+      "name": "Description",
+      "nip": "34, 57, 58, C0",
+      "format": ["description", "<description-text>"],
+      "description": "Provides a textual description. Used in zap receipts (contains the zap request JSON), badge definitions, git repos, and applications.",
+      "indexed": false
+    },
+    {
+      "tag": "emoji",
+      "name": "Custom Emoji",
+      "nip": "30",
+      "format": ["emoji", "<shortcode>", "<image-url>"],
+      "description": "Defines a custom emoji by mapping a shortcode to an image URL. Referenced in content as :shortcode:.",
+      "indexed": false
+    },
+    {
+      "tag": "encrypted",
+      "name": "Encrypted",
+      "nip": "90",
+      "format": ["encrypted"],
+      "description": "Signals that the event content is encrypted. Used in data vending machine (DVM) events.",
+      "indexed": false
+    },
+    {
+      "tag": "expiration",
+      "name": "Expiration",
+      "nip": "40",
+      "format": ["expiration", "<unix-timestamp>"],
+      "description": "Unix timestamp (stringified) after which the event should be considered expired. Relays may discard expired events.",
+      "indexed": false
+    },
+    {
+      "tag": "extension",
+      "name": "File Extension",
+      "nip": "C0",
+      "format": ["extension", "<file-extension>"],
+      "description": "Specifies the file extension for executable or application events.",
+      "indexed": false
+    },
+    {
+      "tag": "file",
+      "name": "File Path",
+      "nip": "35",
+      "format": ["file", "<full-path>"],
+      "description": "Specifies the full file path for torrent or file-related events.",
+      "indexed": false
+    },
+    {
+      "tag": "goal",
+      "name": "Goal",
+      "nip": "75",
+      "format": ["goal", "<event-id>", "<relay-url>"],
+      "description": "References a fundraising goal event by its ID.",
+      "indexed": false
+    },
+    {
+      "tag": "HEAD",
+      "name": "Git HEAD Reference",
+      "nip": "34",
+      "format": ["HEAD", "ref: refs/heads/<branch-name>"],
+      "description": "Specifies the HEAD reference for a git repository, indicating the default branch.",
+      "indexed": false
+    },
+    {
+      "tag": "image",
+      "name": "Image",
+      "nip": "23, 52, 58",
+      "format": ["image", "<image-url>", "<dimensions>"],
+      "description": "Specifies an image URL with optional dimensions in pixels (e.g., '1024x768'). Used in long-form content, calendar events, and badge definitions.",
+      "indexed": false
+    },
+    {
+      "tag": "imeta",
+      "name": "Inline Metadata",
+      "nip": "92",
+      "format": ["imeta", "<key1> <value1>", "<key2> <value2>"],
+      "description": "Provides inline metadata for URLs referenced in the event content. Each subsequent element is a space-separated key-value pair (e.g., 'url https://...', 'dim 800x600', 'blurhash ...').",
+      "indexed": false
+    },
+    {
+      "tag": "license",
+      "name": "License",
+      "nip": "C0",
+      "format": ["license", "<license-identifier>"],
+      "description": "Specifies the license for shared content or applications.",
+      "indexed": false
+    },
+    {
+      "tag": "lnurl",
+      "name": "LNURL",
+      "nip": "57",
+      "format": ["lnurl", "<bech32-encoded-lnurl>"],
+      "description": "Contains a bech32-encoded LNURL for Lightning Network payments.",
+      "indexed": false
+    },
+    {
+      "tag": "location",
+      "name": "Location",
+      "nip": "52, 99",
+      "format": ["location", "<location-string>"],
+      "description": "Specifies a human-readable location string for calendar events or listings.",
+      "indexed": false
+    },
+    {
+      "tag": "merge-base",
+      "name": "Merge Base",
+      "nip": "34",
+      "format": ["merge-base", "<commit-id>"],
+      "description": "Specifies the merge base commit ID for git patch events.",
+      "indexed": false
+    },
+    {
+      "tag": "name",
+      "name": "Name",
+      "nip": "34, 58, 72, C0",
+      "format": ["name", "<name>"],
+      "description": "Specifies a human-readable name. Used for badge definitions, git repos, community definitions, and applications.",
+      "indexed": false
+    },
+    {
+      "tag": "nonce",
+      "name": "Proof of Work Nonce",
+      "nip": "13",
+      "format": ["nonce", "<random-value>", "<target-difficulty>"],
+      "description": "Proof-of-work nonce. The random value is adjusted until the event ID has the required number of leading zero bits specified by the target difficulty.",
+      "indexed": false
+    },
+    {
+      "tag": "preimage",
+      "name": "Payment Preimage",
+      "nip": "57",
+      "format": ["preimage", "<preimage-hash>"],
+      "description": "Contains the preimage (hash) of a BOLT-11 invoice, proving payment was made.",
+      "indexed": false
+    },
+    {
+      "tag": "price",
+      "name": "Price",
+      "nip": "99",
+      "format": ["price", "<amount>", "<currency>", "<frequency>"],
+      "description": "Specifies a price with currency code and optional frequency for classified listings.",
+      "indexed": false
+    },
+    {
+      "tag": "proxy",
+      "name": "Proxy",
+      "nip": "48",
+      "format": ["proxy", "<external-id>", "<protocol>"],
+      "description": "Indicates the event was proxied from another protocol (e.g., ActivityPub, RSS). Contains the external ID and protocol name.",
+      "indexed": false
+    },
+    {
+      "tag": "published_at",
+      "name": "Publication Timestamp",
+      "nip": "23, B0",
+      "format": ["published_at", "<unix-timestamp>"],
+      "description": "Unix timestamp (stringified) indicating when the content was originally published. Distinct from created_at which tracks event creation.",
+      "indexed": false
+    },
+    {
+      "tag": "relay",
+      "name": "Relay URL",
+      "nip": "42, 17",
+      "format": ["relay", "<relay-url>"],
+      "description": "Specifies a relay URL. Used in NIP-42 auth events to identify which relay the auth is for, and in NIP-17 for relay hints.",
+      "indexed": false
+    },
+    {
+      "tag": "relays",
+      "name": "Relay List",
+      "nip": "57",
+      "format": ["relays", "<relay-url-1>", "<relay-url-2>"],
+      "description": "Lists relay URLs where zap receipts should be published.",
+      "indexed": false
+    },
+    {
+      "tag": "repo",
+      "name": "Repository Reference",
+      "nip": "C0",
+      "format": ["repo", "<repository-reference>"],
+      "description": "References the origin repository for executable or application events.",
+      "indexed": false
+    },
+    {
+      "tag": "runtime",
+      "name": "Runtime",
+      "nip": "C0",
+      "format": ["runtime", "<runtime-specification>"],
+      "description": "Specifies the runtime or environment specification for executable events.",
+      "indexed": false
+    },
+    {
+      "tag": "server",
+      "name": "File Storage Server",
+      "nip": "96",
+      "format": ["server", "<server-url>"],
+      "description": "Specifies the URL of a file storage server (Blossom/NIP-96).",
+      "indexed": false
+    },
+    {
+      "tag": "sound",
+      "name": "Sound",
+      "nip": "51",
+      "format": ["sound", "<shortcode>", "<sound-url>", "<image-url>"],
+      "description": "Defines a custom sound by mapping a shortcode to a sound URL with an optional image URL.",
+      "indexed": false
+    },
+    {
+      "tag": "subject",
+      "name": "Subject",
+      "nip": "14, 17, 34",
+      "format": ["subject", "<subject-text>"],
+      "description": "Specifies a subject line for messages, direct messages, or git patches.",
+      "indexed": false
+    },
+    {
+      "tag": "summary",
+      "name": "Summary",
+      "nip": "23, 52",
+      "format": ["summary", "<summary-text>"],
+      "description": "Short summary of the event content. Used in long-form articles and calendar events.",
+      "indexed": false
+    },
+    {
+      "tag": "thumb",
+      "name": "Thumbnail",
+      "nip": "58",
+      "format": ["thumb", "<thumbnail-url>", "<dimensions>"],
+      "description": "Specifies a thumbnail image URL with optional dimensions in pixels for badge definitions.",
+      "indexed": false
+    },
+    {
+      "tag": "title",
+      "name": "Title",
+      "nip": "23, B0",
+      "format": ["title", "<title-text>"],
+      "description": "Specifies a title for long-form content, calendar events, live events, or classified listings.",
+      "indexed": false
+    },
+    {
+      "tag": "tracker",
+      "name": "Torrent Tracker",
+      "nip": "35",
+      "format": ["tracker", "<tracker-url>"],
+      "description": "Specifies a torrent tracker URL for torrent-related events.",
+      "indexed": false
+    },
+    {
+      "tag": "url",
+      "name": "URL",
+      "nip": "various",
+      "format": ["url", "<url>"],
+      "description": "Generic URL tag for associating a web address with an event.",
+      "indexed": false
+    },
+    {
+      "tag": "web",
+      "name": "Webpage URL",
+      "nip": "34",
+      "format": ["web", "<webpage-url>"],
+      "description": "Specifies a webpage URL for git repository events.",
+      "indexed": false
+    },
+    {
+      "tag": "zap",
+      "name": "Zap Split",
+      "nip": "57",
+      "format": ["zap", "<pubkey-hex>", "<relay-url>", "<weight>"],
+      "description": "Specifies zap split recipients. Each zap tag defines a pubkey, relay URL, and weight (stringified integer) for proportional zap distribution.",
+      "indexed": false
+    }
+  ]
+}

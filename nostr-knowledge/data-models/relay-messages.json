@@ -1,0 +1,126 @@
+{
+  "description": "NOSTR relay protocol message types as defined in NIPs 01, 42, and 45",
+  "last_updated": "2026-03-31",
+  "source": "nostr-protocol/nips",
+  "connection_note": "All messages are sent over WebSocket connections as JSON arrays. The first element is always the message type string.",
+  "client_to_relay": [
+    {
+      "type": "EVENT",
+      "format": ["EVENT", "<event JSON>"],
+      "nip": "01",
+      "description": "Publishes a signed event to the relay. The relay will validate the event and respond with an OK message indicating acceptance or rejection."
+    },
+    {
+      "type": "REQ",
+      "format": ["REQ", "<subscription_id>", "<filter1>", "<filter2>", "..."],
+      "nip": "01",
+      "description": "Requests events matching the specified filters and subscribes to receive future matching events in real-time. The subscription_id is an arbitrary non-empty string (max 64 chars) unique per connection. Multiple filters are combined with OR logic; conditions within a single filter use AND logic.",
+      "filter_format": {
+        "ids": "list of event ID prefixes (hex strings)",
+        "authors": "list of pubkey prefixes (lowercase hex strings)",
+        "kinds": "list of kind numbers (integers)",
+        "#<single-letter>": "list of tag values for the given single-letter tag (e.g., #e, #p, #t)",
+        "since": "unix timestamp - events must have created_at >= this value",
+        "until": "unix timestamp - events must have created_at <= this value",
+        "limit": "maximum number of events to return in the initial query"
+      }
+    },
+    {
+      "type": "CLOSE",
+      "format": ["CLOSE", "<subscription_id>"],
+      "nip": "01",
+      "description": "Terminates a previously opened subscription. The relay will stop sending events for this subscription_id. The relay may send a CLOSED message in response."
+    },
+    {
+      "type": "AUTH",
+      "format": ["AUTH", "<signed-event-json>"],
+      "nip": "42",
+      "description": "Sends a signed authentication event (kind 22242) to the relay in response to an AUTH challenge. The event must contain 'relay' and 'challenge' tags matching the relay URL and challenge string. The created_at should be within ~10 minutes of current time.",
+      "auth_event": {
+        "kind": 22242,
+        "required_tags": [
+          ["relay", "<relay-url>"],
+          ["challenge", "<challenge-string>"]
+        ],
+        "note": "Kind 22242 events are never broadcast to other clients. Multiple AUTH messages from different pubkeys are permitted sequentially on the same connection."
+      }
+    },
+    {
+      "type": "COUNT",
+      "format": ["COUNT", "<query_id>", "<filter1>", "<filter2>", "..."],
+      "nip": "45",
+      "description": "Requests a count of events matching the specified filters without retrieving the full events. Filters follow the same format as REQ. Multiple filters are combined with OR logic."
+    }
+  ],
+  "relay_to_client": [
+    {
+      "type": "EVENT",
+      "format": ["EVENT", "<subscription_id>", "<event JSON>"],
+      "nip": "01",
+      "description": "Delivers an event that matches an active subscription. The subscription_id identifies which REQ subscription this event satisfies. Sent both for stored events and new real-time events."
+    },
+    {
+      "type": "OK",
+      "format": ["OK", "<event_id>", "<accepted: true|false>", "<message>"],
+      "nip": "01",
+      "description": "Acknowledges receipt of a client EVENT message. The boolean indicates whether the event was accepted. The message is a machine-readable prefix followed by human-readable text, or an empty string on success.",
+      "message_prefixes": {
+        "duplicate:": "Event already exists on the relay",
+        "pow:": "Proof-of-work difficulty is insufficient",
+        "blocked:": "Event is blocked by relay policy",
+        "rate-limited:": "Client is sending events too quickly",
+        "invalid:": "Event is invalid (bad signature, formatting, etc.)",
+        "error:": "Generic error during processing",
+        "auth-required:": "Authentication is required to publish this event",
+        "restricted:": "Authenticated user lacks sufficient authorization"
+      }
+    },
+    {
+      "type": "EOSE",
+      "format": ["EOSE", "<subscription_id>"],
+      "nip": "01",
+      "description": "Signals 'End Of Stored Events'. Indicates all matching events from the relay's database have been sent, and subsequent EVENT messages for this subscription will be new real-time events."
+    },
+    {
+      "type": "CLOSED",
+      "format": ["CLOSED", "<subscription_id>", "<message>"],
+      "nip": "01",
+      "description": "Indicates the relay has terminated a subscription server-side. The message contains a machine-readable prefix followed by an explanation.",
+      "message_prefixes": {
+        "auth-required:": "Authentication is required to access this subscription",
+        "restricted:": "Authenticated user lacks sufficient authorization",
+        "error:": "An error occurred processing the subscription"
+      }
+    },
+    {
+      "type": "NOTICE",
+      "format": ["NOTICE", "<message>"],
+      "nip": "01",
+      "description": "Sends a human-readable message to the client. Used for errors, warnings, or informational messages. No standardized message format is defined."
+    },
+    {
+      "type": "AUTH",
+      "format": ["AUTH", "<challenge-string>"],
+      "nip": "42",
+      "description": "Sends an authentication challenge to the client. The challenge is an ephemeral string the client must include in its AUTH response event. Relays may issue challenges at any time during the connection.",
+      "trigger_scenarios": [
+        "On initial connection",
+        "When a REQ is rejected (relay also sends CLOSED with 'auth-required:' prefix)",
+        "When an EVENT is rejected (relay also sends OK with false and 'auth-required:' prefix)",
+        "At any point during the connection when the relay decides authentication is needed"
+      ]
+    },
+    {
+      "type": "COUNT",
+      "format": ["COUNT", "<query_id>", "<count-payload>"],
+      "nip": "45",
+      "description": "Returns the count of events matching the filters from the corresponding COUNT request.",
+      "payload_format": {
+        "count": "integer - the number of matching events",
+        "approximate": "boolean (optional) - indicates if the count is an estimate",
+        "hll": "string (optional) - hex-encoded HyperLogLog value for merging counts across relays"
+      },
+      "note": "If the relay refuses the COUNT request, it responds with a CLOSED message instead."
+    }
+  ]
+}

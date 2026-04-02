@@ -1,0 +1,1566 @@
+{
+  "description": "Catalog of major NOSTR open-source repositories",
+  "last_updated": "2026-03-31",
+  "categories": {
+    "protocol": "Protocol specifications",
+    "relay": "Relay implementations",
+    "client-web": "Web client applications",
+    "client-mobile": "Mobile client applications",
+    "client-desktop": "Desktop client applications",
+    "client-specialty": "Specialty/niche clients",
+    "client-video-audio": "Video and audio streaming clients",
+    "library-rust": "Rust libraries",
+    "library-js": "JavaScript/TypeScript libraries",
+    "library-python": "Python libraries",
+    "library-go": "Go libraries",
+    "library-swift": "Swift libraries",
+    "library-kotlin": "Kotlin libraries",
+    "library-dart": "Dart/Flutter libraries",
+    "library-other": "Other language libraries",
+    "tool-cli": "CLI tools",
+    "tool-signer": "Key management and signing tools",
+    "tool-debug": "Debugging and testing tools",
+    "tool-bridge": "Bridges to other protocols",
+    "tool-automation": "Automation and workflow tools",
+    "tool-deployment": "Deployment and hosting tools",
+    "infrastructure": "Infrastructure and services",
+    "marketplace": "Marketplace and commerce",
+    "ai-dvm": "AI and Data Vending Machines"
+  },
+  "repos": [
+    {
+      "name": "nostr-protocol/nips",
+      "url": "https://github.com/nostr-protocol/nips",
+      "category": "protocol",
+      "language": "Markdown",
+      "description": "Nostr Implementation Possibilities - the living specification documents",
+      "priority": "critical",
+      "notes": "THE canonical source of truth for the NOSTR protocol"
+    },
+    {
+      "name": "nostr-protocol/nostr",
+      "url": "https://github.com/nostr-protocol/nostr",
+      "category": "protocol",
+      "language": "Markdown",
+      "description": "Overview and description of the nostr protocol",
+      "priority": "critical",
+      "notes": "The original protocol description by fiatjaf"
+    },
+    {
+      "name": "aljazceru/awesome-nostr",
+      "url": "https://github.com/aljazceru/awesome-nostr",
+      "category": "protocol",
+      "language": "Markdown",
+      "description": "Curated list of nostr projects and resources",
+      "priority": "high",
+      "notes": "Community-maintained ecosystem catalog with 650+ entries"
+    },
+
+    {
+      "name": "hoytech/strfry",
+      "url": "https://github.com/hoytech/strfry",
+      "category": "relay",
+      "language": "C++",
+      "description": "High-performance relay implementation backed by LMDB with negentropy sync support",
+      "priority": "critical",
+      "notes": "One of the most widely deployed relays; supports negentropy for efficient sync"
+    },
+    {
+      "name": "nostr-rs-relay",
+      "url": "https://sr.ht/~gheartsfield/nostr-rs-relay",
+      "category": "relay",
+      "language": "Rust",
+      "description": "Minimalistic relay written in Rust with SQLite backend",
+      "priority": "high",
+      "notes": "One of the earliest and most stable Rust relay implementations"
+    },
+    {
+      "name": "Cameri/nostream",
+      "url": "https://github.com/Cameri/nostream",
+      "category": "relay",
+      "language": "TypeScript",
+      "description": "Feature-rich Nostr relay written in TypeScript with PostgreSQL backend",
+      "priority": "high",
+      "notes": "Popular TypeScript relay, formerly known as nostr-ts-relay"
+    },
+    {
+      "name": "fiatjaf/khatru",
+      "url": "https://github.com/fiatjaf/khatru",
+      "category": "relay",
+      "language": "Go",
+      "description": "Framework for building custom Nostr relays in Go",
+      "priority": "critical",
+      "notes": "The go-to framework for building specialized relays; used by many projects"
+    },
+    {
+      "name": "mikedilger/chorus",
+      "url": "https://github.com/mikedilger/chorus",
+      "category": "relay",
+      "language": "Rust",
+      "description": "Rust-based personal or community relay with fine-grained access control",
+      "priority": "medium",
+      "notes": "By the author of Gossip client"
+    },
+    {
+      "name": "rnostr/rnostr",
+      "url": "https://github.com/rnostr/rnostr",
+      "category": "relay",
+      "language": "Rust",
+      "description": "High-performance relay written in Rust with RocksDB backend",
+      "priority": "medium",
+      "notes": "Focus on performance and scalability"
+    },
+    {
+      "name": "bitvora/haven",
+      "url": "https://github.com/bitvora/haven",
+      "category": "relay",
+      "language": "Go",
+      "description": "Four relays in one plus Blossom media server - personal relay stack",
+      "priority": "high",
+      "notes": "Combines inbox, outbox, private, and chat relays with media hosting"
+    },
+    {
+      "name": "bitvora/wot-relay",
+      "url": "https://github.com/bitvora/wot-relay",
+      "category": "relay",
+      "language": "Go",
+      "description": "Web-of-trust filtered relay that only accepts notes from trusted pubkeys",
+      "priority": "medium",
+      "notes": "Implements WoT-based spam filtering"
+    },
+    {
+      "name": "greenart7c3/Citrine",
+      "url": "https://github.com/greenart7c3/Citrine",
+      "category": "relay",
+      "language": "Kotlin",
+      "description": "Nostr relay that runs on Android devices",
+      "priority": "medium",
+      "notes": "Enables local relay on mobile"
+    },
+    {
+      "name": "Spl0itable/nosflare",
+      "url": "https://github.com/Spl0itable/nosflare",
+      "category": "relay",
+      "language": "TypeScript",
+      "description": "Serverless Nostr relay on Cloudflare Workers with Durable Objects",
+      "priority": "medium",
+      "notes": "Zero-infrastructure relay deployment"
+    },
+    {
+      "name": "mattn/cagliostr",
+      "url": "https://github.com/mattn/cagliostr",
+      "category": "relay",
+      "language": "C++",
+      "description": "Faster Nostr relay in C++ focused on raw speed",
+      "priority": "low",
+      "notes": "Experimental high-performance relay"
+    },
+    {
+      "name": "dezh-tech/immortal",
+      "url": "https://github.com/dezh-tech/immortal",
+      "category": "relay",
+      "language": "Go",
+      "description": "Relay designed for scale and high-load environments",
+      "priority": "medium",
+      "notes": "Built for heavy-traffic production deployments"
+    },
+    {
+      "name": "0ceanslim/grain",
+      "url": "https://github.com/0ceanslim/grain",
+      "category": "relay",
+      "language": "Go",
+      "description": "Highly configurable multipurpose relay with MongoDB backend",
+      "priority": "medium",
+      "notes": "Flexible policy engine for relay operators"
+    },
+    {
+      "name": "fiatjaf/relayer",
+      "url": "https://github.com/fiatjaf/relayer",
+      "category": "relay",
+      "language": "Go",
+      "description": "Server framework for writing custom Nostr relays in Go",
+      "priority": "high",
+      "notes": "Predecessor to khatru; still used by some projects"
+    },
+    {
+      "name": "CodyTseng/nostr-relay-nestjs",
+      "url": "https://github.com/CodyTseng/nostr-relay-nestjs",
+      "category": "relay",
+      "language": "TypeScript",
+      "description": "Relay with clean NestJS architecture, supports multiple storage backends",
+      "priority": "medium",
+      "notes": "Well-structured for TypeScript developers"
+    },
+    {
+      "name": "bezysoftware/netstr",
+      "url": "https://github.com/bezysoftware/netstr",
+      "category": "relay",
+      "language": "C#",
+      "description": "General purpose Nostr relay written in C# with .NET",
+      "priority": "low",
+      "notes": "For .NET ecosystem developers"
+    },
+    {
+      "name": "UTXOnly/nost-py",
+      "url": "https://github.com/UTXOnly/nost-py",
+      "category": "relay",
+      "language": "Python",
+      "description": "Easy to deploy and audit Python relay implementation",
+      "priority": "low",
+      "notes": "Good for learning and auditing"
+    },
+    {
+      "name": "lebrunel/nex",
+      "url": "https://github.com/lebrunel/nex",
+      "category": "relay",
+      "language": "Elixir",
+      "description": "Powerful and scalable relay in Elixir with PostgreSQL",
+      "priority": "low",
+      "notes": "Leverages Elixir/OTP for concurrency"
+    },
+    {
+      "name": "coracle-social/zooid",
+      "url": "https://github.com/coracle-social/zooid",
+      "category": "relay",
+      "language": "TypeScript",
+      "description": "Multi-tenant Nostr relay for communities",
+      "priority": "medium",
+      "notes": "Community-focused multi-tenant architecture"
+    },
+    {
+      "name": "pippellia-btc/rely",
+      "url": "https://github.com/pippellia-btc/rely",
+      "category": "relay",
+      "language": "Go",
+      "description": "Golang framework for building custom nostr relays",
+      "priority": "low",
+      "notes": "Alternative Go relay framework"
+    },
+    {
+      "name": "hoytech/superconductor",
+      "url": "https://github.com/avlo/superconductor",
+      "category": "relay",
+      "language": "Java",
+      "description": "Java Nostr relay framework with Spring Boot",
+      "priority": "low",
+      "notes": "For Java ecosystem developers"
+    },
+    {
+      "name": "nostriphant/transpher",
+      "url": "https://github.com/nostriphant/transpher",
+      "category": "relay",
+      "language": "PHP",
+      "description": "Experimental PHP Nostr relay implementation",
+      "priority": "low",
+      "notes": "PHP-based relay for web hosting environments"
+    },
+
+    {
+      "name": "v0l/snort",
+      "url": "https://github.com/v0l/snort",
+      "category": "client-web",
+      "language": "TypeScript/React",
+      "description": "Fast and feature-rich Nostr web client at snort.social",
+      "priority": "critical",
+      "notes": "One of the most popular and polished web clients"
+    },
+    {
+      "name": "coracle-social/coracle",
+      "url": "https://github.com/coracle-social/coracle",
+      "category": "client-web",
+      "language": "Svelte",
+      "description": "Nostr web client with advanced relay management and outbox model",
+      "priority": "critical",
+      "notes": "Pioneer of outbox model and relay-aware design"
+    },
+    {
+      "name": "irislib/iris-messenger",
+      "url": "https://github.com/irislib/iris-messenger",
+      "category": "client-web",
+      "language": "TypeScript/React",
+      "description": "Feature-rich Nostr web client by Martti Malmi (early Bitcoin contributor)",
+      "priority": "high",
+      "notes": "Built by one of Bitcoin's earliest contributors"
+    },
+    {
+      "name": "hzrd149/nostrudel",
+      "url": "https://github.com/hzrd149/nostrudel",
+      "category": "client-web",
+      "language": "TypeScript/React",
+      "description": "Power-user Nostr web client with extensive NIP support",
+      "priority": "high",
+      "notes": "Known for bleeding-edge NIP implementation"
+    },
+    {
+      "name": "verbiricha/habla.news",
+      "url": "https://github.com/verbiricha/habla.news",
+      "category": "client-web",
+      "language": "TypeScript/Next.js",
+      "description": "Read, write, and curate long-form content (NIP-23) over Nostr",
+      "priority": "high",
+      "notes": "The primary long-form content client"
+    },
+    {
+      "name": "SnowCait/nostter",
+      "url": "https://github.com/SnowCait/nostter",
+      "category": "client-web",
+      "language": "TypeScript/SvelteKit",
+      "description": "Twitter-like Nostr web client with familiar UI",
+      "priority": "medium",
+      "notes": "Good onboarding experience for Twitter migrants"
+    },
+    {
+      "name": "pablof7z/olas",
+      "url": "https://github.com/pablof7z/olas",
+      "category": "client-web",
+      "language": "TypeScript",
+      "description": "Instagram-like image-focused Nostr client",
+      "priority": "medium",
+      "notes": "Photo-first social experience on Nostr"
+    },
+    {
+      "name": "fiatjaf/njump",
+      "url": "https://github.com/fiatjaf/njump",
+      "category": "client-web",
+      "language": "Go",
+      "description": "Nostr static gateway for rendering nostr: URIs and NIP-19 identifiers on the web",
+      "priority": "high",
+      "notes": "Essential infrastructure for linking to Nostr content from the web"
+    },
+    {
+      "name": "ShadowySupercode/gc-alexandria",
+      "url": "https://github.com/ShadowySupercode/gc-alexandria",
+      "category": "client-web",
+      "language": "TypeScript",
+      "description": "Knowledge base and eReader app for Nostr",
+      "priority": "medium",
+      "notes": "Long-form reading and knowledge management"
+    },
+    {
+      "name": "abhay-raizada/nostr-forms",
+      "url": "https://github.com/abhay-raizada/nostr-forms",
+      "category": "client-web",
+      "language": "TypeScript/React",
+      "description": "Google Forms alternative built on Nostr (Formstr)",
+      "priority": "medium",
+      "notes": "Decentralized form creation and data collection"
+    },
+    {
+      "name": "smolgrrr/Wired",
+      "url": "https://github.com/smolgrrr/Wired",
+      "category": "client-web",
+      "language": "TypeScript",
+      "description": "Anonymous-first client with proof-of-work notes (getwired.app)",
+      "priority": "medium",
+      "notes": "4chan-style anonymous posting with PoW"
+    },
+    {
+      "name": "digi-monkey/flycat-web",
+      "url": "https://github.com/digi-monkey/flycat-web",
+      "category": "client-web",
+      "language": "TypeScript",
+      "description": "2000s old-school style Nostr web client",
+      "priority": "low",
+      "notes": "Retro-styled interface"
+    },
+    {
+      "name": "max21dev/groups",
+      "url": "https://github.com/max21dev/groups",
+      "category": "client-web",
+      "language": "TypeScript",
+      "description": "NIP-29 Group Chat web client for relay-based group messaging",
+      "priority": "medium",
+      "notes": "Reference implementation for NIP-29 groups"
+    },
+    {
+      "name": "CodyTseng/jumble",
+      "url": "https://github.com/CodyTseng/jumble",
+      "category": "client-web",
+      "language": "TypeScript",
+      "description": "Web client focused on browsing relay feeds with clean UI",
+      "priority": "medium",
+      "notes": "Relay-feed-centric browsing experience"
+    },
+    {
+      "name": "gzuuus/linktr-nostr",
+      "url": "https://github.com/gzuuus/linktr-nostr",
+      "category": "client-web",
+      "language": "TypeScript",
+      "description": "Linktree-style application built on Nostr (Nostree)",
+      "priority": "medium",
+      "notes": "Profile link aggregation"
+    },
+
+    {
+      "name": "damus-io/damus",
+      "url": "https://github.com/damus-io/damus",
+      "category": "client-mobile",
+      "language": "Swift",
+      "description": "Twitter-like Nostr client for iOS and macOS with zaps support",
+      "priority": "critical",
+      "notes": "THE flagship iOS client; drove early Nostr adoption"
+    },
+    {
+      "name": "vitorpamplona/amethyst",
+      "url": "https://github.com/vitorpamplona/amethyst",
+      "category": "client-mobile",
+      "language": "Kotlin",
+      "description": "Feature-rich Android client supporting extensive NIP coverage",
+      "priority": "critical",
+      "notes": "THE flagship Android client; supports more NIPs than almost any other client"
+    },
+    {
+      "name": "planetary-social/nos",
+      "url": "https://github.com/planetary-social/nos",
+      "category": "client-mobile",
+      "language": "Swift",
+      "description": "UX-focused iOS/macOS native app by Planetary (formerly Scuttlebutt team)",
+      "priority": "high",
+      "notes": "Strong focus on user safety and onboarding"
+    },
+    {
+      "name": "0xchat-app/0xchat",
+      "url": "https://github.com/0xchat-app",
+      "category": "client-mobile",
+      "language": "Dart/Flutter",
+      "description": "Telegram/WeChat-like messaging client for iOS and Android",
+      "priority": "high",
+      "notes": "Focus on encrypted messaging and group chat"
+    },
+    {
+      "name": "KoalaSat/nostros",
+      "url": "https://github.com/KoalaSat/nostros",
+      "category": "client-mobile",
+      "language": "TypeScript/React Native",
+      "description": "Nostr mobile client for Android with basic social features",
+      "priority": "medium",
+      "notes": "Early Android client"
+    },
+    {
+      "name": "haorendashu/nostrmo",
+      "url": "https://github.com/haorendashu/nostrmo",
+      "category": "client-mobile",
+      "language": "Dart/Flutter",
+      "description": "Cross-platform Flutter nostr client for iOS, Android, Web, and Desktop",
+      "priority": "medium",
+      "notes": "Multi-platform Flutter implementation"
+    },
+    {
+      "name": "dluvian/voyage",
+      "url": "https://github.com/dluvian/voyage",
+      "category": "client-mobile",
+      "language": "Kotlin",
+      "description": "Lightweight Android client with Reddit-like UI for topic browsing",
+      "priority": "medium",
+      "notes": "Reddit-style threaded discussions"
+    },
+    {
+      "name": "erdaltoprak/tamga",
+      "url": "https://github.com/erdaltoprak/tamga",
+      "category": "client-mobile",
+      "language": "Swift",
+      "description": "Offline-first Nostr contact and profile manager for iOS",
+      "priority": "low",
+      "notes": "Profile management utility"
+    },
+    {
+      "name": "KoalaSat/Pokey",
+      "url": "https://github.com/KoalaSat/Pokey",
+      "category": "client-mobile",
+      "language": "Kotlin",
+      "description": "Push notifications service for Nostr on Android",
+      "priority": "medium",
+      "notes": "Solves the notification problem for Android Nostr clients"
+    },
+
+    {
+      "name": "damus-io/notedeck",
+      "url": "https://github.com/damus-io/notedeck",
+      "category": "client-desktop",
+      "language": "Rust",
+      "description": "Rust-based multi-column desktop Nostr browser by the Damus team",
+      "priority": "high",
+      "notes": "TweetDeck-style interface; uses egui for native rendering"
+    },
+    {
+      "name": "mikedilger/gossip",
+      "url": "https://github.com/mikedilger/gossip",
+      "category": "client-desktop",
+      "language": "Rust",
+      "description": "Desktop client in Rust with egui, focused on relay-aware gossip model",
+      "priority": "high",
+      "notes": "Pioneer of the outbox/gossip relay model"
+    },
+    {
+      "name": "nickytonline/nostria",
+      "url": "https://nostria.app",
+      "category": "client-desktop",
+      "language": "TypeScript",
+      "description": "Cross-platform Nostr app for Web, Desktop, iOS, and Android",
+      "priority": "medium",
+      "notes": "Multi-platform via web technologies"
+    },
+    {
+      "name": "unclebob/more-speech",
+      "url": "https://github.com/unclebob/more-speech",
+      "category": "client-desktop",
+      "language": "Clojure",
+      "description": "Desktop client in Clojure by Uncle Bob Martin",
+      "priority": "low",
+      "notes": "By the author of Clean Code"
+    },
+    {
+      "name": "prolic/futr",
+      "url": "https://github.com/prolic/futr",
+      "category": "client-desktop",
+      "language": "Haskell",
+      "description": "Nostr client desktop app written in Haskell",
+      "priority": "low",
+      "notes": "Functional programming approach to Nostr"
+    },
+
+    {
+      "name": "v0l/zap-stream-core",
+      "url": "https://github.com/v0l/zap-stream-core",
+      "category": "client-video-audio",
+      "language": "Rust",
+      "description": "Interactive livestreaming service with zaps at zap.stream",
+      "priority": "high",
+      "notes": "Leading Nostr livestreaming platform"
+    },
+    {
+      "name": "vicariousdrama/cornychat",
+      "url": "https://github.com/vicariousdrama/cornychat",
+      "category": "client-video-audio",
+      "language": "JavaScript",
+      "description": "Clubhouse-style audio spaces with Nostr identity and Lightning",
+      "priority": "medium",
+      "notes": "Audio rooms integrated with Nostr"
+    },
+    {
+      "name": "hivetalk/hivetalksfu",
+      "url": "https://github.com/hivetalk/hivetalksfu",
+      "category": "client-video-audio",
+      "language": "JavaScript",
+      "description": "Real-time video conferencing and screen sharing platform",
+      "priority": "medium",
+      "notes": "Video conferencing with Nostr identity"
+    },
+    {
+      "name": "flox1an/nostube",
+      "url": "https://github.com/flox1an/nostube",
+      "category": "client-video-audio",
+      "language": "TypeScript",
+      "description": "YouTube-like video sharing platform built on Nostr",
+      "priority": "medium",
+      "notes": "Video hosting and sharing"
+    },
+
+    {
+      "name": "jesterui/jesterui",
+      "url": "https://github.com/jesterui/jesterui",
+      "category": "client-specialty",
+      "language": "TypeScript",
+      "description": "Chess over Nostr - play chess games using nostr events",
+      "priority": "low",
+      "notes": "Demonstrates gaming over Nostr"
+    },
+    {
+      "name": "zapstore/zapstore",
+      "url": "https://zapstore.dev",
+      "category": "client-specialty",
+      "language": "Dart",
+      "description": "Web-of-trust based app store for discovering and installing apps",
+      "priority": "high",
+      "notes": "Decentralized app distribution"
+    },
+    {
+      "name": "zap.cooking",
+      "url": "https://zap.cooking",
+      "category": "client-specialty",
+      "language": "TypeScript",
+      "description": "Recipe-sharing client built on Nostr",
+      "priority": "low",
+      "notes": "Niche vertical: cooking recipes"
+    },
+    {
+      "name": "mapstr.xyz",
+      "url": "https://mapstr.xyz",
+      "category": "client-specialty",
+      "language": "TypeScript",
+      "description": "Find local businesses that accept Bitcoin, powered by Nostr",
+      "priority": "medium",
+      "notes": "Location-based Bitcoin merchant discovery"
+    },
+    {
+      "name": "DanConwayDev/gitworkshop",
+      "url": "https://github.com/DanConwayDev/gitworkshop",
+      "category": "client-specialty",
+      "language": "TypeScript",
+      "description": "Decentralized git collaboration platform on Nostr",
+      "priority": "high",
+      "notes": "GitHub alternative built on Nostr (NIP-34)"
+    },
+    {
+      "name": "fiatjaf/gitstr",
+      "url": "https://github.com/fiatjaf/gitstr",
+      "category": "client-specialty",
+      "language": "Go",
+      "description": "Send and receive git patches over Nostr",
+      "priority": "medium",
+      "notes": "Git patch workflow via Nostr events"
+    },
+    {
+      "name": "shopstr-eng/shopstr",
+      "url": "https://github.com/shopstr-eng/shopstr",
+      "category": "marketplace",
+      "language": "TypeScript",
+      "description": "Decentralized marketplace with Lightning and Cashu payments",
+      "priority": "medium",
+      "notes": "E-commerce on Nostr"
+    },
+    {
+      "name": "PlebeianTech/plebeian-market",
+      "url": "https://github.com/PlebeianTech/plebeian-market",
+      "category": "marketplace",
+      "language": "Python/JavaScript",
+      "description": "Self-sovereign marketplace with auctions and fixed-price listings",
+      "priority": "medium",
+      "notes": "Full marketplace with auction support"
+    },
+    {
+      "name": "lnbits/nostrmarket",
+      "url": "https://github.com/lnbits/nostrmarket",
+      "category": "marketplace",
+      "language": "Python",
+      "description": "Sell items directly from LNBits instance via Nostr",
+      "priority": "medium",
+      "notes": "LNBits extension for Nostr commerce"
+    },
+    {
+      "name": "satshoot",
+      "url": "https://satshoot.com",
+      "category": "marketplace",
+      "language": "TypeScript",
+      "description": "Freelancing marketplace built on Nostr with Lightning payments",
+      "priority": "medium",
+      "notes": "Decentralized gig economy"
+    },
+    {
+      "name": "sigit.io",
+      "url": "https://sigit.io",
+      "category": "client-specialty",
+      "language": "TypeScript",
+      "description": "Document signing solution using Nostr keys",
+      "priority": "medium",
+      "notes": "Digital signatures and document workflows"
+    },
+    {
+      "name": "keychat-io/keychat-app",
+      "url": "https://github.com/keychat-io/keychat-app",
+      "category": "client-specialty",
+      "language": "Dart/Flutter",
+      "description": "Signal-protocol chat app with Bitcoin key management over Nostr",
+      "priority": "medium",
+      "notes": "Strong encryption focus with ecash payments"
+    },
+    {
+      "name": "shocknet/Lightning.Pub",
+      "url": "https://github.com/shocknet/Lightning.Pub",
+      "category": "client-specialty",
+      "language": "Go",
+      "description": "Nostr daemon for Lightning nodes enabling remote node management",
+      "priority": "medium",
+      "notes": "Lightning node management via Nostr"
+    },
+    {
+      "name": "MostroP2P/mostro",
+      "url": "https://github.com/MostroP2P/mostro-core",
+      "category": "client-specialty",
+      "language": "Rust",
+      "description": "P2P Bitcoin exchange protocol over Nostr with Lightning escrow",
+      "priority": "high",
+      "notes": "Bisq-like P2P exchange using Nostr for communication"
+    },
+
+    {
+      "name": "rust-nostr/nostr",
+      "url": "https://github.com/rust-nostr/nostr",
+      "category": "library-rust",
+      "language": "Rust",
+      "description": "Comprehensive Rust implementation with SDK and FFI bindings for multiple languages",
+      "priority": "critical",
+      "notes": "The primary Rust nostr library; provides bindings for Python, JS, Kotlin, Swift via FFI"
+    },
+    {
+      "name": "0xtlt/nostr_rust",
+      "url": "https://github.com/0xtlt/nostr_rust",
+      "category": "library-rust",
+      "language": "Rust",
+      "description": "Functional Rust implementation of the Nostr protocol",
+      "priority": "medium",
+      "notes": "Alternative Rust library with functional style"
+    },
+    {
+      "name": "mikedilger/nostr-types",
+      "url": "https://github.com/mikedilger/nostr-types",
+      "category": "library-rust",
+      "language": "Rust",
+      "description": "Rust library defining core Nostr types used by the Gossip client",
+      "priority": "medium",
+      "notes": "Types-only crate used as foundation for Gossip"
+    },
+    {
+      "name": "slaninas/nostr-bot",
+      "url": "https://github.com/slaninas/nostr-bot",
+      "category": "library-rust",
+      "language": "Rust",
+      "description": "Rust library for writing Nostr bots with event handling",
+      "priority": "low",
+      "notes": "Bot development framework"
+    },
+    {
+      "name": "sandwichfarm/notemine",
+      "url": "https://github.com/sandwichfarm/notemine",
+      "category": "library-rust",
+      "language": "Rust/WASM",
+      "description": "WebAssembly note miner for proof-of-work Nostr events",
+      "priority": "low",
+      "notes": "PoW mining compiled to WASM"
+    },
+
+    {
+      "name": "fiatjaf/nostr-tools",
+      "url": "https://github.com/fiatjaf/nostr-tools",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "The standard JavaScript/TypeScript library for Nostr protocol operations",
+      "priority": "critical",
+      "notes": "THE canonical JS library; used by most web clients"
+    },
+    {
+      "name": "nostr-dev-kit/ndk",
+      "url": "https://github.com/nostr-dev-kit/ndk",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "Comprehensive Nostr Development Kit with caching, signing, and subscription management",
+      "priority": "critical",
+      "notes": "High-level SDK by pablof7z; powers many production clients"
+    },
+    {
+      "name": "penpenpng/rx-nostr",
+      "url": "https://github.com/penpenpng/rx-nostr",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "RxJS-based library for high-quality relay communication",
+      "priority": "medium",
+      "notes": "Reactive programming approach to Nostr"
+    },
+    {
+      "name": "jiftechnify/nostr-fetch",
+      "url": "https://github.com/jiftechnify/nostr-fetch",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "Utility library for efficiently fetching past events from relays",
+      "priority": "medium",
+      "notes": "Specialized in historical event retrieval"
+    },
+    {
+      "name": "ostyjs/nostr-hooks",
+      "url": "https://github.com/ostyjs/nostr-hooks",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "React hooks for building Nostr clients with NDK integration",
+      "priority": "medium",
+      "notes": "React-specific Nostr hooks"
+    },
+    {
+      "name": "t4t5/nostr-react",
+      "url": "https://github.com/t4t5/nostr-react",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "React hooks for the Nostr protocol",
+      "priority": "medium",
+      "notes": "Earlier React hooks library"
+    },
+    {
+      "name": "nostr-connect/connect",
+      "url": "https://github.com/nostr-connect/connect",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "Nostr Connect SDK for implementing NIP-46 remote signing",
+      "priority": "medium",
+      "notes": "NIP-46 reference implementation"
+    },
+    {
+      "name": "adamritter/nostr-relaypool-ts",
+      "url": "https://github.com/adamritter/nostr-relaypool-ts",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "TypeScript relay pool library with connection management",
+      "priority": "low",
+      "notes": "Low-level relay pool management"
+    },
+    {
+      "name": "CodyTseng/nostr-relay",
+      "url": "https://github.com/CodyTseng/nostr-relay",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "TypeScript library for building custom Nostr relays",
+      "priority": "medium",
+      "notes": "Framework for TS relay development"
+    },
+    {
+      "name": "mmalmi/nostr-double-ratchet",
+      "url": "https://github.com/mmalmi/nostr-double-ratchet",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "Signal-style double-ratchet secure messaging over Nostr",
+      "priority": "medium",
+      "notes": "Advanced encryption for Nostr DMs"
+    },
+    {
+      "name": "mmalmi/nostr-social-graph",
+      "url": "https://github.com/mmalmi/nostr-social-graph",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "Library for computing and querying Nostr social graphs",
+      "priority": "medium",
+      "notes": "Web-of-trust and social graph analysis"
+    },
+    {
+      "name": "getAlby/js-sdk",
+      "url": "https://github.com/getAlby/js-sdk",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "Alby JavaScript SDK for NWC (Nostr Wallet Connect) and Lightning",
+      "priority": "high",
+      "notes": "Essential for Lightning/NWC integration in web apps"
+    },
+    {
+      "name": "supertestnet/nwcjs",
+      "url": "https://github.com/supertestnet/nwcjs",
+      "category": "library-js",
+      "language": "JavaScript",
+      "description": "Lightweight JavaScript library for Nostr Wallet Connect",
+      "priority": "medium",
+      "notes": "Minimal NWC implementation"
+    },
+    {
+      "name": "paulmillr/nip44",
+      "url": "https://github.com/paulmillr/nip44",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "Reference implementation of NIP-44 encrypted direct messages",
+      "priority": "high",
+      "notes": "Canonical NIP-44 encryption library"
+    },
+    {
+      "name": "coracle-social/paravel",
+      "url": "https://github.com/coracle-social/paravel",
+      "category": "library-js",
+      "language": "TypeScript",
+      "description": "Abstract toolkit for writing Nostr clients with relay-aware architecture",
+      "priority": "medium",
+      "notes": "Foundation library from Coracle team"
+    },
+
+    {
+      "name": "jeffthibault/python-nostr",
+      "url": "https://github.com/jeffthibault/python-nostr",
+      "category": "library-python",
+      "language": "Python",
+      "description": "Python library for creating Nostr clients",
+      "priority": "high",
+      "notes": "The original Python Nostr library"
+    },
+    {
+      "name": "holgern/pynostr",
+      "url": "https://github.com/holgern/pynostr",
+      "category": "library-python",
+      "language": "Python",
+      "description": "Python library for Nostr with relay management and event handling",
+      "priority": "medium",
+      "notes": "More actively maintained Python library"
+    },
+    {
+      "name": "monty888/monstr",
+      "url": "https://github.com/monty888/monstr",
+      "category": "library-python",
+      "language": "Python",
+      "description": "Python code for working with Nostr including client and relay code",
+      "priority": "medium",
+      "notes": "Full-featured Python Nostr toolkit"
+    },
+
+    {
+      "name": "fiatjaf/go-nostr",
+      "url": "https://github.com/fiatjaf/go-nostr",
+      "category": "library-go",
+      "language": "Go",
+      "description": "The standard Go library for Nostr relay management, event creation, and signing",
+      "priority": "critical",
+      "notes": "THE canonical Go library; used by khatru and most Go relays"
+    },
+    {
+      "name": "mleku/nostr",
+      "url": "https://git.mleku.dev/mleku/nostr",
+      "category": "library-go",
+      "language": "Go",
+      "description": "Go library with hand-written JSON codecs for maximum performance",
+      "priority": "low",
+      "notes": "Performance-focused alternative Go library"
+    },
+
+    {
+      "name": "nostr-sdk/nostr-sdk-ios",
+      "url": "https://github.com/nostr-sdk/nostr-sdk-ios",
+      "category": "library-swift",
+      "language": "Swift",
+      "description": "Native Swift library for Apple platforms (iOS, macOS, tvOS, watchOS)",
+      "priority": "high",
+      "notes": "Official Swift SDK for Apple ecosystem"
+    },
+    {
+      "name": "cnixbtc/NostrKit",
+      "url": "https://github.com/cnixbtc/NostrKit",
+      "category": "library-swift",
+      "language": "Swift",
+      "description": "Swift library for interacting with Nostr relays",
+      "priority": "medium",
+      "notes": "Earlier Swift library"
+    },
+    {
+      "name": "yysskk/swift-nostr-client",
+      "url": "https://github.com/yysskk/swift-nostr-client",
+      "category": "library-swift",
+      "language": "Swift",
+      "description": "Modern Swift library with async/await support",
+      "priority": "medium",
+      "notes": "Modern Swift concurrency patterns"
+    },
+
+    {
+      "name": "Giszmo/NostrPostr",
+      "url": "https://github.com/Giszmo/NostrPostr",
+      "category": "library-kotlin",
+      "language": "Kotlin",
+      "description": "Kotlin Nostr library with relay and client support",
+      "priority": "medium",
+      "notes": "Kotlin-native Nostr implementation"
+    },
+    {
+      "name": "lpicanco/knostr",
+      "url": "https://github.com/lpicanco/knostr",
+      "category": "library-kotlin",
+      "language": "Kotlin",
+      "description": "Nostr relay implemented in Kotlin with PostgreSQL",
+      "priority": "low",
+      "notes": "Kotlin relay that also serves as library reference"
+    },
+
+    {
+      "name": "relaystr/ndk",
+      "url": "https://github.com/relaystr/ndk",
+      "category": "library-dart",
+      "language": "Dart",
+      "description": "Nostr Development Kit for Dart/Flutter applications",
+      "priority": "high",
+      "notes": "Primary Dart NDK for Flutter clients"
+    },
+    {
+      "name": "ethicnology/dart-nostr",
+      "url": "https://github.com/ethicnology/dart-nostr",
+      "category": "library-dart",
+      "language": "Dart",
+      "description": "Dart library for Nostr protocol with Flutter support",
+      "priority": "medium",
+      "notes": "Core Dart protocol library"
+    },
+    {
+      "name": "anasfik/nostr",
+      "url": "https://github.com/anasfik/nostr",
+      "category": "library-dart",
+      "language": "Dart",
+      "description": "Developer-experience-focused Dart library for Nostr",
+      "priority": "medium",
+      "notes": "DX-focused Dart implementation"
+    },
+
+    {
+      "name": "tcheeric/nostr-java",
+      "url": "https://github.com/tcheeric/nostr-java",
+      "category": "library-other",
+      "language": "Java",
+      "description": "Java client library for the Nostr protocol",
+      "priority": "medium",
+      "notes": "Primary Java library"
+    },
+    {
+      "name": "swentel/nostr-php",
+      "url": "https://github.com/swentel/nostr-php",
+      "category": "library-other",
+      "language": "PHP",
+      "description": "PHP library for the Nostr protocol",
+      "priority": "medium",
+      "notes": "Enables PHP web apps to interact with Nostr"
+    },
+    {
+      "name": "dtonon/nostr-ruby",
+      "url": "https://github.com/dtonon/nostr-ruby",
+      "category": "library-other",
+      "language": "Ruby",
+      "description": "Ruby implementation of the Nostr protocol",
+      "priority": "low",
+      "notes": "Ruby Nostr gem"
+    },
+    {
+      "name": "wilsonsilva/nostr",
+      "url": "https://github.com/wilsonsilva/nostr",
+      "category": "library-other",
+      "language": "Ruby",
+      "description": "Ruby Nostr gem with event creation and relay communication",
+      "priority": "low",
+      "notes": "Alternative Ruby implementation"
+    },
+    {
+      "name": "Gruruya/nmostr",
+      "url": "https://github.com/Gruruya/nmostr",
+      "category": "library-other",
+      "language": "Nim",
+      "description": "Nim library for the Nostr protocol",
+      "priority": "low",
+      "notes": "Nim ecosystem support"
+    },
+    {
+      "name": "lontivero/Nostra",
+      "url": "https://github.com/lontivero/Nostra",
+      "category": "library-other",
+      "language": "F#",
+      "description": "F# Nostr library available as NuGet package",
+      "priority": "low",
+      "notes": ".NET/F# ecosystem"
+    },
+    {
+      "name": "Kukks/NNostr",
+      "url": "https://github.com/Kukks/NNostr",
+      "category": "library-other",
+      "language": "C#",
+      "description": "C# Nostr library for .NET clients and relays",
+      "priority": "medium",
+      "notes": ".NET ecosystem"
+    },
+    {
+      "name": "vnuge/noscrypt",
+      "url": "https://github.com/vnuge/noscrypt",
+      "category": "library-other",
+      "language": "C",
+      "description": "C89 library for Nostr cryptographic operations (NIP-01, NIP-44)",
+      "priority": "medium",
+      "notes": "Low-level C cryptography for embedded/constrained environments"
+    },
+    {
+      "name": "delirehberi/nostr.hs",
+      "url": "https://github.com/delirehberi/nostr.hs",
+      "category": "library-other",
+      "language": "Haskell",
+      "description": "Nostr client library for Haskell",
+      "priority": "low",
+      "notes": "Haskell ecosystem"
+    },
+    {
+      "name": "lnbits/arduino-nostr",
+      "url": "https://github.com/lnbits/arduino-nostr",
+      "category": "library-other",
+      "language": "C++",
+      "description": "Arduino library for Nostr on embedded devices",
+      "priority": "low",
+      "notes": "IoT and embedded Nostr"
+    },
+    {
+      "name": "bvcxza/sonos",
+      "url": "https://github.com/bvcxza/sonos",
+      "category": "library-other",
+      "language": "C++",
+      "description": "C++ library and command line tool for Nostr",
+      "priority": "low",
+      "notes": "C++ native library"
+    },
+    {
+      "name": "theborakompanioni/nostr-spring-boot-starter",
+      "url": "https://github.com/theborakompanioni/nostr-spring-boot-starter",
+      "category": "library-other",
+      "language": "Java",
+      "description": "Spring Boot starter for Nostr applications",
+      "priority": "low",
+      "notes": "Java Spring ecosystem integration"
+    },
+
+    {
+      "name": "fiatjaf/nak",
+      "url": "https://nak.nostr.com",
+      "category": "tool-cli",
+      "language": "Go",
+      "description": "Nostr Army Knife - the Swiss-army-knife CLI tool for Nostr by fiatjaf",
+      "priority": "critical",
+      "notes": "THE essential CLI tool for Nostr development and debugging"
+    },
+    {
+      "name": "fiatjaf/noscl",
+      "url": "https://github.com/fiatjaf/noscl",
+      "category": "tool-cli",
+      "language": "Go",
+      "description": "Basic command-line Nostr client for posting and reading",
+      "priority": "medium",
+      "notes": "Simple CLI client for scripting"
+    },
+    {
+      "name": "jb55/nostril",
+      "url": "https://github.com/jb55/nostril",
+      "category": "tool-cli",
+      "language": "C",
+      "description": "C CLI tool for creating and signing Nostr events",
+      "priority": "medium",
+      "notes": "Minimal C tool for event generation"
+    },
+    {
+      "name": "blakejakopovic/nostcat",
+      "url": "https://github.com/blakejakopovic/nostcat",
+      "category": "tool-cli",
+      "language": "Rust",
+      "description": "Cat-like websocket client for nostr relay scripting and piping",
+      "priority": "medium",
+      "notes": "Unix-philosophy tool for relay interaction"
+    },
+    {
+      "name": "0xtrr/nostr-tool",
+      "url": "https://github.com/0xtrr/nostr-tool",
+      "category": "tool-cli",
+      "language": "Rust",
+      "description": "Rust CLI tool for generating and publishing Nostr events",
+      "priority": "medium",
+      "notes": "Rust-based event publishing"
+    },
+    {
+      "name": "8go/nostr-commander-rs",
+      "url": "https://github.com/8go/nostr-commander-rs",
+      "category": "tool-cli",
+      "language": "Rust",
+      "description": "CLI-based Nostr app for sending/receiving messages and managing keys",
+      "priority": "medium",
+      "notes": "Full-featured CLI application"
+    },
+    {
+      "name": "vishalxl/nostr_console",
+      "url": "https://github.com/vishalxl/nostr_console",
+      "category": "tool-cli",
+      "language": "Dart",
+      "description": "Nostr command-line client written in Dart with threaded view",
+      "priority": "low",
+      "notes": "TUI client with tree-style threads"
+    },
+    {
+      "name": "DanConwayDev/ngit-cli",
+      "url": "https://github.com/DanConwayDev/ngit-cli",
+      "category": "tool-cli",
+      "language": "Rust",
+      "description": "CLI for Nostr-based git collaboration (NIP-34)",
+      "priority": "high",
+      "notes": "Git workflow via Nostr patches"
+    },
+    {
+      "name": "jiftechnify/nosdump",
+      "url": "https://github.com/jiftechnify/nosdump",
+      "category": "tool-cli",
+      "language": "Go",
+      "description": "Command-line tool for dumping events from Nostr relays",
+      "priority": "medium",
+      "notes": "Relay data export utility"
+    },
+    {
+      "name": "UTXOnly/nostpy-cli",
+      "url": "https://github.com/UTXOnly/nostpy-cli",
+      "category": "tool-cli",
+      "language": "Python",
+      "description": "Python command-line tool for Nostr operations",
+      "priority": "low",
+      "notes": "Python CLI for Nostr"
+    },
+
+    {
+      "name": "greenart7c3/Amber",
+      "url": "https://github.com/greenart7c3/Amber",
+      "category": "tool-signer",
+      "language": "Kotlin",
+      "description": "Nostr event signer for Android implementing NIP-46 and NIP-55",
+      "priority": "critical",
+      "notes": "THE Android signer app; used by Amethyst and other Android clients"
+    },
+    {
+      "name": "nickytonline/nsec.app",
+      "url": "https://nsec.app",
+      "category": "tool-signer",
+      "language": "TypeScript",
+      "description": "Web-based Nostr key management and remote signing via NIP-46",
+      "priority": "high",
+      "notes": "Browser-based NIP-46 signer"
+    },
+    {
+      "name": "nickytonline/nos2x",
+      "url": "https://github.com/nickytonline/nos2x",
+      "category": "tool-signer",
+      "language": "JavaScript",
+      "description": "Browser extension for Nostr key management implementing NIP-07",
+      "priority": "high",
+      "notes": "Original NIP-07 browser extension signer"
+    },
+    {
+      "name": "nickytonline/nostr-key-converter",
+      "url": "https://github.com/rot13maxi/key-convertr",
+      "category": "tool-signer",
+      "language": "Rust",
+      "description": "Convert between hex and bech32 (npub/nsec) key formats",
+      "priority": "medium",
+      "notes": "Key format conversion utility"
+    },
+    {
+      "name": "keystr/keystr-rs",
+      "url": "https://github.com/keystr/keystr-rs",
+      "category": "tool-signer",
+      "language": "Rust",
+      "description": "Application for managing Nostr keys and signing events",
+      "priority": "medium",
+      "notes": "Desktop key management"
+    },
+    {
+      "name": "Anderson-Juhasc/nostrame",
+      "url": "https://github.com/Anderson-Juhasc/nostrame",
+      "category": "tool-signer",
+      "language": "TypeScript",
+      "description": "Nostr signer and account management tool",
+      "priority": "medium",
+      "notes": "Web-based account management"
+    },
+
+    {
+      "name": "Cameri/nostrillery",
+      "url": "https://github.com/Cameri/nostrillery",
+      "category": "tool-debug",
+      "language": "TypeScript",
+      "description": "Nostr relay load testing and benchmarking tool",
+      "priority": "medium",
+      "notes": "Performance testing for relays"
+    },
+    {
+      "name": "dskvr/nostr-relay-inspector",
+      "url": "https://github.com/dskvr/nostr-relay-inspector",
+      "category": "tool-debug",
+      "language": "TypeScript",
+      "description": "Library for inspecting relay capabilities, NIP support, and metadata",
+      "priority": "medium",
+      "notes": "Relay capability discovery"
+    },
+    {
+      "name": "blakejakopovic/nostr-spam-detection",
+      "url": "https://github.com/blakejakopovic/nostr-spam-detection",
+      "category": "tool-debug",
+      "language": "Python",
+      "description": "Machine learning model for detecting spam on Nostr",
+      "priority": "medium",
+      "notes": "ML-based content filtering"
+    },
+    {
+      "name": "coracle-social/bucket",
+      "url": "https://github.com/coracle-social/bucket",
+      "category": "tool-debug",
+      "language": "TypeScript",
+      "description": "In-memory-only Node.js relay for testing and development",
+      "priority": "medium",
+      "notes": "Ephemeral relay for development"
+    },
+
+    {
+      "name": "soapbox-pub/mostr",
+      "url": "https://gitlab.com/soapbox-pub/mostr",
+      "category": "tool-bridge",
+      "language": "TypeScript",
+      "description": "Bridge between Nostr and the Fediverse (ActivityPub/Mastodon)",
+      "priority": "high",
+      "notes": "Enables cross-posting between Nostr and Mastodon"
+    },
+    {
+      "name": "8go/matrix-nostr-bridge",
+      "url": "https://github.com/8go/matrix-nostr-bridge",
+      "category": "tool-bridge",
+      "language": "Python",
+      "description": "Bridge between Matrix and Nostr protocols",
+      "priority": "medium",
+      "notes": "Matrix/Element integration"
+    },
+    {
+      "name": "Asone/nostrss",
+      "url": "https://github.com/Asone/nostrss",
+      "category": "tool-bridge",
+      "language": "Rust",
+      "description": "Flexible RSS feed broadcaster to Nostr relays",
+      "priority": "medium",
+      "notes": "RSS-to-Nostr bridge"
+    },
+    {
+      "name": "trinidz/rssnotes",
+      "url": "https://github.com/trinidz/rssnotes",
+      "category": "tool-bridge",
+      "language": "Go",
+      "description": "RSS/Atom feed to Nostr relay bridge",
+      "priority": "low",
+      "notes": "Alternative RSS bridge"
+    },
+    {
+      "name": "psic4t/atomstr",
+      "url": "https://github.com/psic4t/atomstr",
+      "category": "tool-bridge",
+      "language": "Go",
+      "description": "RSS/Atom gateway to Nostr",
+      "priority": "low",
+      "notes": "Atom feed bridge"
+    },
+    {
+      "name": "Cameri/smtp-nostr-gateway",
+      "url": "https://github.com/Cameri/smtp-nostr-gateway",
+      "category": "tool-bridge",
+      "language": "TypeScript",
+      "description": "Bridge from email (SMTP) to Nostr encrypted DMs",
+      "priority": "low",
+      "notes": "Email-to-Nostr gateway"
+    },
+    {
+      "name": "geoffwhittington/meshtastic-bridge",
+      "url": "https://github.com/geoffwhittington/meshtastic-bridge",
+      "category": "tool-bridge",
+      "language": "Python",
+      "description": "Gateway from Meshtastic LoRa mesh to Nostr",
+      "priority": "medium",
+      "notes": "Off-grid Nostr via LoRa radio"
+    },
+
+    {
+      "name": "snow-actions/nostr",
+      "url": "https://github.com/snow-actions/nostr",
+      "category": "tool-automation",
+      "language": "TypeScript",
+      "description": "GitHub Action for sending Nostr events from CI/CD pipelines",
+      "priority": "low",
+      "notes": "CI/CD integration"
+    },
+    {
+      "name": "ocknamo/n8n-nodes-nostrobots",
+      "url": "https://github.com/ocknamo/n8n-nodes-nostrobots",
+      "category": "tool-automation",
+      "language": "TypeScript",
+      "description": "N8N workflow automation nodes for Nostr",
+      "priority": "low",
+      "notes": "No-code automation via N8N"
+    },
+    {
+      "name": "getAlby/http-nostr-publisher",
+      "url": "https://github.com/getAlby/http-nostr-publisher",
+      "category": "tool-automation",
+      "language": "TypeScript",
+      "description": "Cloudflare worker for publishing Nostr events via HTTP",
+      "priority": "low",
+      "notes": "HTTP-to-Nostr publishing bridge"
+    },
+
+    {
+      "name": "ipv6rslimited/cloudseeder",
+      "url": "https://github.com/ipv6rslimited/cloudseeder",
+      "category": "tool-deployment",
+      "language": "Shell",
+      "description": "One-click deployment tool for Nostr relays",
+      "priority": "medium",
+      "notes": "Simplified relay deployment"
+    },
+    {
+      "name": "vdo/nostr-rs-relay-compose",
+      "url": "https://github.com/vdo/nostr-rs-relay-compose",
+      "category": "tool-deployment",
+      "language": "Docker",
+      "description": "Docker Compose deployment for nostr-rs-relay with SSL",
+      "priority": "medium",
+      "notes": "Production relay deployment template"
+    },
+    {
+      "name": "sovereign-stack",
+      "url": "https://www.sovereign-stack.org",
+      "category": "tool-deployment",
+      "language": "Shell",
+      "description": "Tool for deploying sovereign infrastructure including Nostr relays",
+      "priority": "low",
+      "notes": "Full sovereign infrastructure stack"
+    },
+
+    {
+      "name": "quentintaranpino/nostrcheck-server",
+      "url": "https://github.com/quentintaranpino/nostrcheck-server",
+      "category": "infrastructure",
+      "language": "TypeScript",
+      "description": "All-in-one server: NIP-05 verification, media hosting, relay",
+      "priority": "high",
+      "notes": "Combined infrastructure server"
+    },
+    {
+      "name": "nostr.watch",
+      "url": "https://nostr.watch",
+      "category": "infrastructure",
+      "language": "TypeScript",
+      "description": "Relay monitoring and discovery service",
+      "priority": "high",
+      "notes": "THE relay directory and monitoring dashboard"
+    },
+    {
+      "name": "nostr.io",
+      "url": "https://nostr.io",
+      "category": "infrastructure",
+      "language": "Various",
+      "description": "Nostr network statistics and analytics dashboard",
+      "priority": "medium",
+      "notes": "Network-wide metrics"
+    },
+    {
+      "name": "nostr.guru",
+      "url": "https://nostr.guru",
+      "category": "infrastructure",
+      "language": "Various",
+      "description": "Nostr web gateway for viewing events and profiles via URL",
+      "priority": "medium",
+      "notes": "Web-accessible event viewer"
+    },
+    {
+      "name": "ibz/servus",
+      "url": "https://github.com/ibz/servus",
+      "category": "infrastructure",
+      "language": "Rust",
+      "description": "Self-contained CMS and blogging engine with built-in relay",
+      "priority": "medium",
+      "notes": "All-in-one Nostr publishing server"
+    },
+    {
+      "name": "studiokaiji/nostr-webhost",
+      "url": "https://github.com/studiokaiji/nostr-webhost",
+      "category": "infrastructure",
+      "language": "TypeScript",
+      "description": "Host single-page applications on Nostr relays",
+      "priority": "low",
+      "notes": "Web hosting via Nostr"
+    },
+    {
+      "name": "coracle-social/navigatr",
+      "url": "https://github.com/coracle-social/navigatr",
+      "category": "infrastructure",
+      "language": "TypeScript",
+      "description": "Utility for discovering and exploring Nostr relays",
+      "priority": "medium",
+      "notes": "Relay discovery service"
+    },
+    {
+      "name": "sandwichfarm/nostr-geotags",
+      "url": "https://github.com/sandwichfarm/nostr-geotags",
+      "category": "infrastructure",
+      "language": "TypeScript",
+      "description": "Generate standardized geotags for Nostr events",
+      "priority": "low",
+      "notes": "Geolocation tagging library"
+    },
+    {
+      "name": "ksedgwic/noshtastic",
+      "url": "https://github.com/ksedgwic/noshtastic",
+      "category": "infrastructure",
+      "language": "Rust",
+      "description": "Geo-specific virtual Nostr relay for location-based content",
+      "priority": "low",
+      "notes": "Location-aware relay infrastructure"
+    },
+    {
+      "name": "Letdown2491/bloom",
+      "url": "https://github.com/Letdown2491/bloom",
+      "category": "infrastructure",
+      "language": "TypeScript",
+      "description": "File manager for Blossom and NIP-96 media servers",
+      "priority": "medium",
+      "notes": "Media server management"
+    },
+    {
+      "name": "zapstore/server",
+      "url": "https://github.com/zapstore/server",
+      "category": "infrastructure",
+      "language": "Various",
+      "description": "Combined Nostr relay and Blossom media server",
+      "priority": "medium",
+      "notes": "App store infrastructure"
+    },
+    {
+      "name": "snarfed/granary",
+      "url": "https://github.com/snarfed/granary",
+      "category": "infrastructure",
+      "language": "Python",
+      "description": "Convert Nostr content to/from ActivityPub, RSS, Atom, and other formats",
+      "priority": "medium",
+      "notes": "Protocol format conversion library"
+    },
+
+    {
+      "name": "colealbon/cafe-society",
+      "url": "https://github.com/colealbon/cafe-society",
+      "category": "ai-dvm",
+      "language": "JavaScript",
+      "description": "Machine learning training tool for Nostr content filtering",
+      "priority": "low",
+      "notes": "ML for content curation"
+    },
+    {
+      "name": "atrifat/nostr-filter-relay",
+      "url": "https://github.com/atrifat/nostr-filter-relay",
+      "category": "ai-dvm",
+      "language": "TypeScript",
+      "description": "Relay that filters content using AI classification by type and language",
+      "priority": "medium",
+      "notes": "AI-powered content filtering relay"
+    },
+    {
+      "name": "Clawstr/clawstr",
+      "url": "https://github.com/clawstr/clawstr",
+      "category": "ai-dvm",
+      "language": "TypeScript",
+      "description": "Social network for AI agents on Nostr",
+      "priority": "medium",
+      "notes": "AI agent social network"
+    },
+    {
+      "name": "antoinedelorme/gravity-swarm-mcp",
+      "url": "https://github.com/antoinedelorme/gravity-swarm-mcp",
+      "category": "ai-dvm",
+      "language": "TypeScript",
+      "description": "MCP server for AI agent reputation network on Nostr",
+      "priority": "medium",
+      "notes": "Agent reputation via Nostr"
+    },
+    {
+      "name": "singularityjason/lightning-memory",
+      "url": "https://github.com/singularityjason/lightning-memory",
+      "category": "ai-dvm",
+      "language": "TypeScript",
+      "description": "Decentralized agent memory using Nostr and Lightning",
+      "priority": "low",
+      "notes": "Persistent AI agent memory on Nostr"
+    },
+    {
+      "name": "getstacks.dev",
+      "url": "https://getstacks.dev",
+      "category": "ai-dvm",
+      "language": "TypeScript",
+      "description": "Decentralized platform for sharing and monetizing AI templates",
+      "priority": "medium",
+      "notes": "AI template marketplace on Nostr"
+    }
+  ]
+}

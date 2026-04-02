@@ -1,0 +1,312 @@
+{
+  "description": "NIP-19 bech32-encoded entities reference — a complete machine-readable specification of all NOSTR bech32 entity types, their encoding formats, TLV structures, and usage constraints.",
+  "last_updated": "2026-03-31",
+  "source": "NIP-19 (https://github.com/nostr-protocol/nips/blob/master/19.md)",
+  "note": "These encodings are for DISPLAY PURPOSES ONLY. The core NOSTR protocol (NIP-01 events, NIP-05 responses, relay messages) uses raw hex-encoded keys and IDs. Bech32 is used exclusively in user-facing contexts: client UIs, QR codes, nostr: URIs (NIP-21), and copy-paste sharing.",
+  "encoding": {
+    "format": "bech32",
+    "reference": "BIP-173 (https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki)",
+    "max_length_chars": 5000,
+    "structure": "hrp + '1' + data_chars + checksum",
+    "notes": [
+      "The human-readable part (HRP) is the prefix (npub, nsec, note, nprofile, nevent, naddr, nrelay).",
+      "The separator is always the character '1'.",
+      "Data is encoded using the bech32 character set: qpzry9x8gf2tvdw0s3jn54khce6mua7l.",
+      "Clients MUST accept both hex and bech32 input from users but MUST convert to hex internally for protocol operations.",
+      "Bech32 strings MUST NOT exceed 5000 characters in length."
+    ]
+  },
+  "simple_entities": [
+    {
+      "prefix": "npub",
+      "hrp": "npub",
+      "encodes": "public key",
+      "data_type": "raw 32-byte value",
+      "data_length_bytes": 32,
+      "description": "A secp256k1 public key (x-only, per BIP-340 Schnorr) encoded in bech32. This is the primary human-readable format for sharing NOSTR identities. The underlying key is a 256-bit x-coordinate of a point on the secp256k1 curve.",
+      "usage": "Sharing user identities in UIs, QR codes, nostr: URIs, NIP-05 resolution displays, profile links.",
+      "example_hex": "3bf0c63fcb93463407af97a5e5ee64fa883d107ef9e558472c4eb9aaaefa459d",
+      "example_bech32": "npub180cvv07tjdrrgpa0j7j7tmnyl2yr6yr7l8j4s3evf6u64th6gkwsyjh6w6",
+      "example_note": "This is fiatjaf's public key, the creator of the NOSTR protocol."
+    },
+    {
+      "prefix": "nsec",
+      "hrp": "nsec",
+      "encodes": "private key",
+      "data_type": "raw 32-byte value",
+      "data_length_bytes": 32,
+      "description": "A secp256k1 private key (scalar) encoded in bech32. SENSITIVE DATA: this is the user's signing key and grants full control over their NOSTR identity. Must never be shared, logged, transmitted to relays, or stored in plaintext.",
+      "usage": "Key backup and import only. Clients SHOULD use NIP-49 (encrypted export) or NIP-46 (remote signing) instead of raw nsec handling wherever possible.",
+      "security_warnings": [
+        "NEVER share an nsec with anyone or any service.",
+        "NEVER paste an nsec into a website or web client unless you fully trust it.",
+        "NEVER transmit an nsec over unencrypted channels.",
+        "NEVER store an nsec in plaintext on disk. Use NIP-49 encrypted format instead.",
+        "Clients SHOULD warn users when they detect an nsec being pasted into a public content field.",
+        "Clients SHOULD use NIP-07 (browser extension), NIP-46 (remote signer), or NIP-55 (Android signer) to avoid handling raw private keys."
+      ],
+      "example_hex": null,
+      "example_bech32": null,
+      "example_note": "Examples intentionally omitted to avoid accidental use of real private keys."
+    },
+    {
+      "prefix": "note",
+      "hrp": "note",
+      "encodes": "event id",
+      "data_type": "raw 32-byte value",
+      "data_length_bytes": 32,
+      "description": "A NOSTR event ID (SHA-256 hash of the serialized event) encoded in bech32. Despite the name 'note', this can reference any event kind, not just kind 1 text notes. However, for richer references that include relay hints and author information, prefer nevent.",
+      "usage": "Sharing links to specific events. The nevent format is generally preferred because it includes relay hints for discoverability.",
+      "deprecation_note": "While not formally deprecated, nevent is preferred over note for new implementations because it includes relay hints and author metadata that help clients find the referenced event."
+    }
+  ],
+  "tlv_entities": [
+    {
+      "prefix": "nprofile",
+      "hrp": "nprofile",
+      "encodes": "public key + relay hints",
+      "description": "A public key bundled with optional relay URL hints indicating where the user's events can be found. This is the preferred way to share user references because it helps clients discover and connect to the correct relays.",
+      "usage": "Sharing user profiles with relay discovery information. Preferred over bare npub for cross-client interoperability.",
+      "tlv_types": [
+        {
+          "type": 0,
+          "name": "special",
+          "value": "32-byte public key (x-only secp256k1)",
+          "length_bytes": 32,
+          "required": true,
+          "repeatable": false,
+          "description": "The public key being referenced. Exactly 32 bytes."
+        },
+        {
+          "type": 1,
+          "name": "relay",
+          "value": "ASCII relay URL (e.g., wss://relay.example.com)",
+          "length_bytes": "variable",
+          "required": false,
+          "repeatable": true,
+          "description": "A relay URL where events from this pubkey are likely to be found. Multiple relay entries can be included to improve discoverability. Should be valid WebSocket URLs (wss:// or ws://)."
+        }
+      ],
+      "example_scenario": "Sharing a link to a user's profile that includes the relays they publish to, so the recipient's client can immediately connect and fetch their events."
+    },
+    {
+      "prefix": "nevent",
+      "hrp": "nevent",
+      "encodes": "event id + relay hints + optional author + optional kind",
+      "description": "An event ID bundled with optional relay hints, author pubkey, and event kind. This is the preferred way to reference specific events because it provides all the metadata a client needs to find and validate the event.",
+      "usage": "Sharing links to specific events with full discoverability metadata. Strongly preferred over bare note IDs.",
+      "tlv_types": [
+        {
+          "type": 0,
+          "name": "special",
+          "value": "32-byte event ID (SHA-256 hash)",
+          "length_bytes": 32,
+          "required": true,
+          "repeatable": false,
+          "description": "The event ID being referenced. Exactly 32 bytes."
+        },
+        {
+          "type": 1,
+          "name": "relay",
+          "value": "ASCII relay URL",
+          "length_bytes": "variable",
+          "required": false,
+          "repeatable": true,
+          "description": "A relay URL where this event is likely stored. Multiple relay hints can be included."
+        },
+        {
+          "type": 2,
+          "name": "author",
+          "value": "32-byte pubkey of the event author",
+          "length_bytes": 32,
+          "required": false,
+          "repeatable": false,
+          "description": "The public key of the event's author. Helps clients verify the event and discover it via the author's relay list (NIP-65)."
+        },
+        {
+          "type": 3,
+          "name": "kind",
+          "value": "32-bit unsigned big-endian integer representing the event kind",
+          "length_bytes": 4,
+          "required": false,
+          "repeatable": false,
+          "description": "The event kind number. Encoded as a 4-byte big-endian unsigned integer. Helps clients know what to expect before fetching."
+        }
+      ],
+      "example_scenario": "Sharing a link to a specific long-form article (kind 30023) with relay hints and author info so any client can fetch and render it."
+    },
+    {
+      "prefix": "naddr",
+      "hrp": "naddr",
+      "encodes": "parameterized replaceable event coordinate (kind + pubkey + d-tag)",
+      "description": "References a parameterized replaceable event by its coordinate: the combination of kind number, author pubkey, and d-tag value. Unlike nevent (which references a specific event by its immutable ID), naddr references the latest version of a replaceable event. This is essential for content that updates over time, like user profiles, articles, or wiki pages.",
+      "usage": "Referencing replaceable content (articles, wiki pages, app handler registrations, calendar events, etc.) where you want the link to always resolve to the latest version.",
+      "tlv_types": [
+        {
+          "type": 0,
+          "name": "special",
+          "value": "d-tag value (UTF-8 string, variable length)",
+          "length_bytes": "variable (can be 0 for empty d-tag)",
+          "required": true,
+          "repeatable": false,
+          "description": "The value of the event's 'd' tag. This is a UTF-8 string (NOT a 32-byte hash). Can be empty (zero length) for replaceable events that use an empty d-tag."
+        },
+        {
+          "type": 1,
+          "name": "relay",
+          "value": "ASCII relay URL",
+          "length_bytes": "variable",
+          "required": false,
+          "repeatable": true,
+          "description": "A relay URL where the latest version of this event might be found."
+        },
+        {
+          "type": 2,
+          "name": "author",
+          "value": "32-byte pubkey of the event author",
+          "length_bytes": 32,
+          "required": true,
+          "repeatable": false,
+          "description": "The public key of the event's author. Required because the coordinate includes the author."
+        },
+        {
+          "type": 3,
+          "name": "kind",
+          "value": "32-bit unsigned big-endian integer representing the event kind",
+          "length_bytes": 4,
+          "required": true,
+          "repeatable": false,
+          "description": "The event kind number. Required because the coordinate includes the kind. Must be a parameterized replaceable event kind (30000-39999) or a replaceable event kind."
+        }
+      ],
+      "applicable_event_kinds": "Parameterized replaceable events (kinds 30000-39999) and replaceable events that use d-tags.",
+      "example_scenario": "Linking to a long-form article (kind 30023) so the link always resolves to the author's latest revision, even if the event ID changes with each update."
+    },
+    {
+      "prefix": "nrelay",
+      "hrp": "nrelay",
+      "encodes": "relay URL",
+      "description": "A relay URL encoded in bech32 with TLV. DEPRECATED: this prefix is deprecated and should not be used in new implementations.",
+      "status": "deprecated",
+      "deprecation_note": "nrelay was removed from the NIP-19 specification. Use NIP-65 relay list metadata (kind 10002) for relay discovery instead.",
+      "tlv_types": [
+        {
+          "type": 0,
+          "name": "special",
+          "value": "ASCII relay URL",
+          "length_bytes": "variable",
+          "required": true,
+          "repeatable": false,
+          "description": "The relay URL."
+        }
+      ]
+    }
+  ],
+  "tlv_type_reference": {
+    "description": "TLV (Type-Length-Value) encoding is used for shareable identifiers (nprofile, nevent, naddr, nrelay). Each TLV entry consists of: 1 byte for type, 1 byte for length, then 'length' bytes of value data.",
+    "encoding_format": {
+      "type_field": "1 byte — the TLV type code (0, 1, 2, or 3)",
+      "length_field": "1 byte — the number of bytes in the value field (0-255)",
+      "value_field": "variable — the actual data, exactly 'length' bytes"
+    },
+    "types": {
+      "0": {
+        "name": "special",
+        "description": "The main identifier for the entity. Its meaning depends on the prefix: for nprofile it is a 32-byte pubkey, for nevent it is a 32-byte event ID, for naddr it is a UTF-8 d-tag string, for nrelay it is an ASCII relay URL.",
+        "context_specific_values": {
+          "nprofile": "32-byte public key",
+          "nevent": "32-byte event ID",
+          "naddr": "UTF-8 string (d-tag value, variable length)",
+          "nrelay": "ASCII relay URL (variable length)"
+        }
+      },
+      "1": {
+        "name": "relay",
+        "description": "A relay URL where the entity might be found. Encoded as ASCII bytes. Can appear multiple times (repeatable) to provide multiple relay hints for redundancy and discoverability.",
+        "repeatable": true,
+        "format": "ASCII-encoded WebSocket URL (typically wss:// or ws://)"
+      },
+      "2": {
+        "name": "author",
+        "description": "The 32-byte public key of the event author. Used in nevent (optional) and naddr (required) to identify who created the referenced event.",
+        "repeatable": false,
+        "length_bytes": 32
+      },
+      "3": {
+        "name": "kind",
+        "description": "The event kind as a 32-bit unsigned big-endian integer. Used in nevent (optional) and naddr (required) to specify the event type.",
+        "repeatable": false,
+        "length_bytes": 4,
+        "encoding": "32-bit unsigned integer, big-endian byte order"
+      }
+    }
+  },
+  "client_implementation_requirements": {
+    "parsing": [
+      "Clients MUST be able to parse all NIP-19 prefixes (npub, nsec, note, nprofile, nevent, naddr).",
+      "Clients MUST ignore TLV entries with unknown type codes rather than rejecting the entire string.",
+      "Clients SHOULD handle bech32 strings up to 5000 characters.",
+      "Clients MUST accept both hex and bech32 input from users where key/ID entry is expected."
+    ],
+    "encoding": [
+      "Clients SHOULD generate nprofile instead of npub when sharing user references (includes relay hints).",
+      "Clients SHOULD generate nevent instead of note when sharing event references (includes relay hints).",
+      "Clients MUST use naddr (not nevent) when referencing parameterized replaceable events to ensure the link tracks the latest version.",
+      "Clients MUST use hex encoding (not bech32) in NIP-01 event JSON, relay protocol messages, and NIP-05 responses."
+    ],
+    "display": [
+      "Clients SHOULD display bech32 entities in a user-friendly truncated format (e.g., npub1abc...xyz).",
+      "Clients SHOULD resolve nprofile relay hints and attempt to fetch from those relays.",
+      "Clients SHOULD use nevent author hints to look up the author's relay list (NIP-65) as a fallback discovery mechanism."
+    ],
+    "security": [
+      "Clients MUST warn users if an nsec is detected in a public content field (e.g., note text, profile metadata).",
+      "Clients SHOULD NOT store nsec values in plaintext. Use NIP-49 encrypted format or delegate to NIP-07/NIP-46/NIP-55 signers.",
+      "Clients MUST validate that decoded data matches expected lengths (32 bytes for keys/IDs, 4 bytes for kind)."
+    ]
+  },
+  "relationship_to_other_nips": {
+    "NIP-01": "The core protocol. NIP-01 uses hex-encoded keys and IDs exclusively. NIP-19 is a display layer on top.",
+    "NIP-05": "DNS-based identifiers. NIP-05 JSON responses use hex pubkeys, not bech32. Clients display the resolved pubkey as npub.",
+    "NIP-21": "The nostr: URI scheme. NIP-21 URIs wrap NIP-19 bech32 strings: nostr:npub1..., nostr:nevent1..., nostr:naddr1..., etc.",
+    "NIP-27": "Text note references. NIP-27 uses nostr: URIs (which contain NIP-19 strings) for inline references within event content.",
+    "NIP-46": "Remote signing (Nostr Connect). Uses npub for identifying the signer but communicates via hex-encoded keys in the protocol layer.",
+    "NIP-49": "Private key encryption. Provides an encrypted alternative to raw nsec for key backup and storage.",
+    "NIP-65": "Relay list metadata. Provides the relay discovery mechanism that makes nprofile and nevent relay hints useful — clients can fall back to a user's NIP-65 relay list."
+  },
+  "prefix_selection_guide": {
+    "description": "Quick reference for choosing the right NIP-19 prefix for a given use case.",
+    "rules": [
+      {
+        "use_case": "Share a user identity / public key",
+        "preferred": "nprofile",
+        "fallback": "npub",
+        "reason": "nprofile includes relay hints for discoverability"
+      },
+      {
+        "use_case": "Reference a specific non-replaceable event",
+        "preferred": "nevent",
+        "fallback": "note",
+        "reason": "nevent includes relay hints, author, and kind metadata"
+      },
+      {
+        "use_case": "Reference a replaceable or parameterized replaceable event",
+        "preferred": "naddr",
+        "fallback": null,
+        "reason": "naddr tracks the latest version via coordinate (kind+pubkey+d-tag) instead of a fixed event ID"
+      },
+      {
+        "use_case": "Export or import a private key",
+        "preferred": "nsec (with NIP-49 encryption)",
+        "fallback": "nsec (raw, use with extreme caution)",
+        "reason": "NIP-49 provides encrypted key export; raw nsec should be avoided when possible"
+      },
+      {
+        "use_case": "Share a relay URL",
+        "preferred": "Plain URL string or NIP-65 relay list",
+        "fallback": null,
+        "reason": "nrelay is deprecated; use plain URLs or NIP-65 kind 10002 events"
+      }
+    ]
+  }
+}

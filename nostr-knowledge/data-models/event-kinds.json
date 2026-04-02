@@ -1,0 +1,1803 @@
+{
+  "description": "Complete registry of NOSTR event kinds",
+  "last_updated": "2026-03-31",
+  "source": "nostr-protocol/nips",
+  "ranges": {
+    "regular": {
+      "min_ranges": "1000-9999, 4-44, 1, 2",
+      "description": "Regular events, stored by relays"
+    },
+    "replaceable": {
+      "min_ranges": "10000-19999, 0, 3",
+      "description": "Replaceable events, only latest kept per pubkey+kind"
+    },
+    "ephemeral": {
+      "min_ranges": "20000-29999",
+      "description": "Ephemeral events, not stored by relays"
+    },
+    "addressable": {
+      "min_ranges": "30000-39999",
+      "description": "Addressable events, latest per kind+pubkey+d-tag"
+    }
+  },
+  "kinds": [
+    {
+      "kind": 0,
+      "name": "User Metadata",
+      "nip": "01",
+      "description": "Stores user profile information (name, about, picture, nip05, lud16, etc.)",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 1,
+      "name": "Short Text Note",
+      "nip": "01",
+      "description": "A plain text note, the basic building block of Nostr content",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 2,
+      "name": "Recommend Relay",
+      "nip": "01",
+      "description": "Recommend a relay to followers (superseded by NIP-65)",
+      "behavior": "regular",
+      "status": "deprecated"
+    },
+    {
+      "kind": 3,
+      "name": "Follows",
+      "nip": "02",
+      "description": "Contact list / follow list containing pubkeys the user follows",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 4,
+      "name": "Encrypted Direct Messages",
+      "nip": "04",
+      "description": "NIP-04 encrypted direct messages (superseded by NIP-17)",
+      "behavior": "regular",
+      "status": "deprecated"
+    },
+    {
+      "kind": 5,
+      "name": "Event Deletion Request",
+      "nip": "09",
+      "description": "Request deletion of previously published events",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6,
+      "name": "Repost",
+      "nip": "18",
+      "description": "Repost/boost of a kind 1 Short Text Note",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 7,
+      "name": "Reaction",
+      "nip": "25",
+      "description": "Reaction to another event (like, emoji, +, - etc.)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 8,
+      "name": "Badge Award",
+      "nip": "58",
+      "description": "Award a badge defined in kind 30009 to one or more pubkeys",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9,
+      "name": "Chat Message",
+      "nip": "C7",
+      "description": "Simple group chat message",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 10,
+      "name": "Group Chat Threaded Reply",
+      "nip": "29",
+      "description": "Threaded reply in a group chat",
+      "behavior": "regular",
+      "status": "deprecated"
+    },
+    {
+      "kind": 11,
+      "name": "Thread",
+      "nip": "7D",
+      "description": "Thread event for threaded conversations",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 12,
+      "name": "Group Thread Reply",
+      "nip": "29",
+      "description": "Reply within a group thread",
+      "behavior": "regular",
+      "status": "deprecated"
+    },
+    {
+      "kind": 13,
+      "name": "Seal",
+      "nip": "59",
+      "description": "Sealed/encrypted event used in gift wrap protocol",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 14,
+      "name": "Direct Message",
+      "nip": "17",
+      "description": "NIP-17 direct message (used inside gift wrap, kind 1059)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 15,
+      "name": "File Message",
+      "nip": "17",
+      "description": "File attachment sent via NIP-17 direct messaging",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 16,
+      "name": "Generic Repost",
+      "nip": "18",
+      "description": "Repost of any event kind (not just kind 1)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 17,
+      "name": "Reaction to a Website",
+      "nip": "25",
+      "description": "Reaction targeting a URL rather than a Nostr event",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 20,
+      "name": "Picture",
+      "nip": "68",
+      "description": "Picture/image post event",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 21,
+      "name": "Video Event",
+      "nip": "71",
+      "description": "Video content event (landscape/general video)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 22,
+      "name": "Short-form Portrait Video Event",
+      "nip": "71",
+      "description": "Short-form portrait/vertical video (similar to Reels/TikTok)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 24,
+      "name": "Public Message",
+      "nip": "A4",
+      "description": "Public message event",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 30,
+      "name": "Internal Reference",
+      "nip": "NKBIP-03",
+      "description": "Internal reference for knowledge base linking",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 31,
+      "name": "External Web Reference",
+      "nip": "NKBIP-03",
+      "description": "External web URL reference for knowledge base",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 32,
+      "name": "Hardcopy Reference",
+      "nip": "NKBIP-03",
+      "description": "Reference to a physical/hardcopy document",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 33,
+      "name": "Prompt Reference",
+      "nip": "NKBIP-03",
+      "description": "AI prompt reference for knowledge base",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 40,
+      "name": "Channel Creation",
+      "nip": "28",
+      "description": "Create a new public chat channel",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 41,
+      "name": "Channel Metadata",
+      "nip": "28",
+      "description": "Update metadata for a public chat channel",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 42,
+      "name": "Channel Message",
+      "nip": "28",
+      "description": "Post a message in a public chat channel",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 43,
+      "name": "Channel Hide Message",
+      "nip": "28",
+      "description": "Hide a message in a public chat channel",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 44,
+      "name": "Channel Mute User",
+      "nip": "28",
+      "description": "Mute a user in a public chat channel",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 62,
+      "name": "Request to Vanish",
+      "nip": "62",
+      "description": "Request that relays delete all events from the user",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 64,
+      "name": "Chess (PGN)",
+      "nip": "64",
+      "description": "Chess game in Portable Game Notation format",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 443,
+      "name": "KeyPackage",
+      "nip": "Marmot",
+      "description": "MLS KeyPackage for Marmot encrypted group messaging protocol",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 444,
+      "name": "Welcome Message",
+      "nip": "Marmot",
+      "description": "MLS Welcome message for Marmot encrypted group messaging protocol",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 445,
+      "name": "Group Event",
+      "nip": "Marmot",
+      "description": "Encrypted group event for Marmot protocol",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 818,
+      "name": "Merge Requests",
+      "nip": "54",
+      "description": "Merge request for wiki/collaborative editing",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1018,
+      "name": "Poll Response",
+      "nip": "88",
+      "description": "Response/vote to a poll (kind 1068)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1021,
+      "name": "Bid",
+      "nip": "15",
+      "description": "Place a bid on a marketplace auction",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1022,
+      "name": "Bid Confirmation",
+      "nip": "15",
+      "description": "Confirm a bid on a marketplace auction",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1040,
+      "name": "OpenTimestamps",
+      "nip": "03",
+      "description": "OpenTimestamps attestation for events",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1059,
+      "name": "Gift Wrap",
+      "nip": "59",
+      "description": "Wraps a sealed event (kind 13) for private delivery to a recipient",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1063,
+      "name": "File Metadata",
+      "nip": "94",
+      "description": "Metadata about a file (URL, hash, size, dimensions, etc.)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1068,
+      "name": "Poll",
+      "nip": "88",
+      "description": "Create a poll with options for voting",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1111,
+      "name": "Comment",
+      "nip": "22",
+      "description": "Comment on any event kind, URL, or other addressable content",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1222,
+      "name": "Voice Message",
+      "nip": "A0",
+      "description": "Voice message / audio note",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1244,
+      "name": "Voice Message Comment",
+      "nip": "A0",
+      "description": "Comment/reply to a voice message",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1311,
+      "name": "Live Chat Message",
+      "nip": "53",
+      "description": "Chat message in a live event/stream",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1337,
+      "name": "Code Snippet",
+      "nip": "C0",
+      "description": "Code snippet with syntax highlighting metadata",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1617,
+      "name": "Patches",
+      "nip": "34",
+      "description": "Git patch for code collaboration",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1618,
+      "name": "Pull Requests",
+      "nip": "34",
+      "description": "Pull request for git repository collaboration",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1619,
+      "name": "Pull Request Updates",
+      "nip": "34",
+      "description": "Update/status change to an existing pull request",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1621,
+      "name": "Issues",
+      "nip": "34",
+      "description": "Issue/bug report for git repository collaboration",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1622,
+      "name": "Git Replies",
+      "nip": "34",
+      "description": "Reply to git-related events (patches, issues, PRs)",
+      "behavior": "regular",
+      "status": "deprecated"
+    },
+    {
+      "kind": 1630,
+      "name": "Status (Open)",
+      "nip": "34",
+      "description": "Git status: open",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1631,
+      "name": "Status (Applied/Closed)",
+      "nip": "34",
+      "description": "Git status: applied or closed",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1632,
+      "name": "Status (Closed)",
+      "nip": "34",
+      "description": "Git status: closed",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1633,
+      "name": "Status (Draft)",
+      "nip": "34",
+      "description": "Git status: draft",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1971,
+      "name": "Problem Tracker",
+      "nip": "Nostrocket",
+      "description": "Problem/task tracking for Nostrocket project management",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1984,
+      "name": "Reporting",
+      "nip": "56",
+      "description": "Report events or users for content moderation",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1985,
+      "name": "Label",
+      "nip": "32",
+      "description": "Attach labels/tags to events, pubkeys, or other content",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1986,
+      "name": "Relay Reviews",
+      "nip": null,
+      "description": "User reviews and ratings of relays",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 1987,
+      "name": "AI Embeddings / Vector Lists",
+      "nip": "NKBIP-02",
+      "description": "AI-generated embeddings and vector data for knowledge base",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 2003,
+      "name": "Torrent",
+      "nip": "35",
+      "description": "Torrent metadata (infohash, trackers, etc.)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 2004,
+      "name": "Torrent Comment",
+      "nip": "35",
+      "description": "Comment on a torrent",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 2022,
+      "name": "Coinjoin Pool",
+      "nip": "Joinstr",
+      "description": "Coinjoin pool coordination for Joinstr protocol",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 4550,
+      "name": "Community Post Approval",
+      "nip": "72",
+      "description": "Moderator approval of a post in a community",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5000,
+      "name": "Job Request (Text Generation)",
+      "nip": "90",
+      "description": "Data vending machine job request for text generation",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5001,
+      "name": "Job Request (Text-to-Image)",
+      "nip": "90",
+      "description": "Data vending machine job request for text-to-image generation",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5002,
+      "name": "Job Request (Image-to-Text / OCR)",
+      "nip": "90",
+      "description": "Data vending machine job request for image-to-text / OCR",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5003,
+      "name": "Job Request (Translation)",
+      "nip": "90",
+      "description": "Data vending machine job request for text translation",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5004,
+      "name": "Job Request (Summarization)",
+      "nip": "90",
+      "description": "Data vending machine job request for content summarization",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5005,
+      "name": "Job Request (Speech-to-Text)",
+      "nip": "90",
+      "description": "Data vending machine job request for speech-to-text transcription",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5050,
+      "name": "Job Request (Discovery / Content Recommendation)",
+      "nip": "90",
+      "description": "Data vending machine job request for content discovery and recommendations",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5100,
+      "name": "Job Request (Embeddings Generation)",
+      "nip": "90",
+      "description": "Data vending machine job request for generating vector embeddings",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5200,
+      "name": "Job Request (Image Generation)",
+      "nip": "90",
+      "description": "Data vending machine job request for AI image generation",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5250,
+      "name": "Job Request (Video Generation)",
+      "nip": "90",
+      "description": "Data vending machine job request for AI video generation",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5300,
+      "name": "Job Request (Text-to-Speech)",
+      "nip": "90",
+      "description": "Data vending machine job request for text-to-speech conversion",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 5999,
+      "name": "Job Request (Generic)",
+      "nip": "90",
+      "description": "Generic data vending machine job request (range 5000-5999)",
+      "behavior": "regular",
+      "status": "active",
+      "note": "Kinds 5000-5999 are reserved for DVM job requests"
+    },
+    {
+      "kind": 6000,
+      "name": "Job Result (Text Generation)",
+      "nip": "90",
+      "description": "Data vending machine job result for text generation",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6001,
+      "name": "Job Result (Text-to-Image)",
+      "nip": "90",
+      "description": "Data vending machine job result for text-to-image",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6002,
+      "name": "Job Result (Image-to-Text / OCR)",
+      "nip": "90",
+      "description": "Data vending machine job result for image-to-text / OCR",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6003,
+      "name": "Job Result (Translation)",
+      "nip": "90",
+      "description": "Data vending machine job result for translation",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6004,
+      "name": "Job Result (Summarization)",
+      "nip": "90",
+      "description": "Data vending machine job result for summarization",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6005,
+      "name": "Job Result (Speech-to-Text)",
+      "nip": "90",
+      "description": "Data vending machine job result for speech-to-text",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6050,
+      "name": "Job Result (Discovery / Content Recommendation)",
+      "nip": "90",
+      "description": "Data vending machine job result for content discovery",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6100,
+      "name": "Job Result (Embeddings)",
+      "nip": "90",
+      "description": "Data vending machine job result for vector embeddings",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6200,
+      "name": "Job Result (Image Generation)",
+      "nip": "90",
+      "description": "Data vending machine job result for AI image generation",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6250,
+      "name": "Job Result (Video Generation)",
+      "nip": "90",
+      "description": "Data vending machine job result for AI video generation",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6300,
+      "name": "Job Result (Text-to-Speech)",
+      "nip": "90",
+      "description": "Data vending machine job result for text-to-speech",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 6999,
+      "name": "Job Result (Generic)",
+      "nip": "90",
+      "description": "Generic data vending machine job result (range 6000-6999)",
+      "behavior": "regular",
+      "status": "active",
+      "note": "Kinds 6000-6999 are reserved for DVM job results"
+    },
+    {
+      "kind": 7000,
+      "name": "Job Feedback",
+      "nip": "90",
+      "description": "Feedback on a data vending machine job (payment required, error, partial, etc.)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 7374,
+      "name": "Reserved Cashu Wallet Tokens",
+      "nip": "60",
+      "description": "Cashu tokens reserved/pending in wallet",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 7375,
+      "name": "Cashu Wallet Tokens",
+      "nip": "60",
+      "description": "Cashu ecash tokens stored in wallet",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 7376,
+      "name": "Cashu Wallet History",
+      "nip": "60",
+      "description": "Transaction history for Cashu wallet",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 7516,
+      "name": "Geocache Log",
+      "nip": "Geocaching",
+      "description": "Log entry for a geocache find",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 7517,
+      "name": "Geocache Proof of Find",
+      "nip": "Geocaching",
+      "description": "Cryptographic proof of finding a geocache",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 8000,
+      "name": "Add User",
+      "nip": "43",
+      "description": "Add a user to a group (NIP-43 group management)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 8001,
+      "name": "Remove User",
+      "nip": "43",
+      "description": "Remove a user from a group (NIP-43 group management)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9000,
+      "name": "Group Admin: Add User",
+      "nip": "29",
+      "description": "Admin action to add a user to a relay-based group",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9001,
+      "name": "Group Admin: Remove User",
+      "nip": "29",
+      "description": "Admin action to remove a user from a relay-based group",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9002,
+      "name": "Group Admin: Edit Metadata",
+      "nip": "29",
+      "description": "Admin action to edit group metadata",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9003,
+      "name": "Group Admin: Add Permission",
+      "nip": "29",
+      "description": "Admin action to add a permission to a user in a group",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9004,
+      "name": "Group Admin: Remove Permission",
+      "nip": "29",
+      "description": "Admin action to remove a permission from a user in a group",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9005,
+      "name": "Group Admin: Delete Event",
+      "nip": "29",
+      "description": "Admin action to delete an event from a group",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9006,
+      "name": "Group Admin: Edit Group Status",
+      "nip": "29",
+      "description": "Admin action to change group status (open/closed, public/private)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9007,
+      "name": "Group Admin: Create Group",
+      "nip": "29",
+      "description": "Admin action to create a new relay-based group",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9008,
+      "name": "Group Admin: Delete Group",
+      "nip": "29",
+      "description": "Admin action to delete a relay-based group",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9021,
+      "name": "Group Join Request",
+      "nip": "29",
+      "description": "Request to join a relay-based group",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9022,
+      "name": "Group Leave Request",
+      "nip": "29",
+      "description": "Request to leave a relay-based group",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9041,
+      "name": "Zap Goal",
+      "nip": "75",
+      "description": "Set a fundraising/zap goal with a target amount",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9321,
+      "name": "Nutzap",
+      "nip": "61",
+      "description": "Send Cashu ecash tokens as a zap (nutzap)",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9467,
+      "name": "Tidal Login",
+      "nip": "Tidal-Nostr",
+      "description": "Tidal music service login integration",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9734,
+      "name": "Zap Request",
+      "nip": "57",
+      "description": "Request a Lightning zap payment",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9735,
+      "name": "Zap",
+      "nip": "57",
+      "description": "Zap receipt confirming a Lightning payment was made",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 9802,
+      "name": "Highlights",
+      "nip": "84",
+      "description": "Highlight/excerpt from content with attribution",
+      "behavior": "regular",
+      "status": "active"
+    },
+    {
+      "kind": 10000,
+      "name": "Mute List",
+      "nip": "51",
+      "description": "List of muted pubkeys, event IDs, keywords, or threads",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10001,
+      "name": "Pin List",
+      "nip": "51",
+      "description": "List of pinned events for the user's profile",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10002,
+      "name": "Relay List Metadata",
+      "nip": "65",
+      "description": "User's preferred relays for reading and writing",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10003,
+      "name": "Bookmark List",
+      "nip": "51",
+      "description": "List of bookmarked events, URLs, and hashtags",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10004,
+      "name": "Communities List",
+      "nip": "51",
+      "description": "List of communities the user belongs to",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10005,
+      "name": "Public Chats List",
+      "nip": "51",
+      "description": "List of public chat channels the user follows",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10006,
+      "name": "Blocked Relays List",
+      "nip": "51",
+      "description": "List of relays the user wants to avoid",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10007,
+      "name": "Search Relays List",
+      "nip": "51",
+      "description": "List of relays the user prefers for search queries",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10009,
+      "name": "User Groups",
+      "nip": "51",
+      "description": "List of NIP-29 relay-based groups the user belongs to",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10011,
+      "name": "External Identities",
+      "nip": "39",
+      "description": "User's external identity claims (GitHub, Twitter, etc.)",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10012,
+      "name": "Favorite Relays List",
+      "nip": "51",
+      "description": "List of the user's favorite relays",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10013,
+      "name": "Private Event Relay List",
+      "nip": "37",
+      "description": "List of relays for private/draft events",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10015,
+      "name": "Interests List",
+      "nip": "51",
+      "description": "List of hashtags/topics the user is interested in",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10019,
+      "name": "Nutzap Mint Recommendation",
+      "nip": "61",
+      "description": "User's recommended Cashu mints for receiving nutzaps",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10020,
+      "name": "Media Follows",
+      "nip": "51",
+      "description": "List of pubkeys the user follows specifically for media content",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10030,
+      "name": "User Emoji List",
+      "nip": "51",
+      "description": "User's custom emoji shortcodes and image URLs",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10050,
+      "name": "Relay List to Receive DMs",
+      "nip": "17",
+      "description": "Preferred relays for receiving NIP-17 direct messages",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10051,
+      "name": "KeyPackage Relays List",
+      "nip": "Marmot",
+      "description": "Relays for Marmot MLS KeyPackage distribution",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10063,
+      "name": "User Server List",
+      "nip": "Blossom",
+      "description": "User's preferred Blossom media servers",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10096,
+      "name": "File Storage Server List",
+      "nip": "96",
+      "description": "User's preferred NIP-96 file storage servers",
+      "behavior": "replaceable",
+      "status": "deprecated"
+    },
+    {
+      "kind": 10166,
+      "name": "Relay Monitor Announcement",
+      "nip": "66",
+      "description": "Announcement from a relay monitor service",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10312,
+      "name": "Room Presence",
+      "nip": "53",
+      "description": "Announce presence in a live event room",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 10377,
+      "name": "Proxy Announcement",
+      "nip": "Nostr Epoxy",
+      "description": "Announcement of a Nostr proxy service",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 11111,
+      "name": "Transport Method Announcement",
+      "nip": "Nostr Epoxy",
+      "description": "Announcement of available transport methods for Nostr relay connections",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 13194,
+      "name": "Wallet Info",
+      "nip": "47",
+      "description": "Nostr Wallet Connect wallet information and capabilities",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 13534,
+      "name": "Membership Lists",
+      "nip": "43",
+      "description": "Group membership lists (NIP-43 group management)",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 14388,
+      "name": "User Sound Effect Lists",
+      "nip": "Corny Chat",
+      "description": "User's sound effect collection for Corny Chat",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 15128,
+      "name": "Root Nsite Manifest",
+      "nip": "5A",
+      "description": "Root manifest for Nostr-based website (nsite)",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 17375,
+      "name": "Cashu Wallet Event",
+      "nip": "60",
+      "description": "Cashu wallet state/configuration event",
+      "behavior": "replaceable",
+      "status": "active"
+    },
+    {
+      "kind": 21000,
+      "name": "Lightning Pub RPC",
+      "nip": "Lightning.Pub",
+      "description": "Remote procedure call for Lightning.Pub service",
+      "behavior": "ephemeral",
+      "status": "active"
+    },
+    {
+      "kind": 22242,
+      "name": "Client Authentication",
+      "nip": "42",
+      "description": "Client authentication challenge/response with relays",
+      "behavior": "ephemeral",
+      "status": "active"
+    },
+    {
+      "kind": 23194,
+      "name": "Wallet Request",
+      "nip": "47",
+      "description": "Nostr Wallet Connect request (pay invoice, get balance, etc.)",
+      "behavior": "ephemeral",
+      "status": "active"
+    },
+    {
+      "kind": 23195,
+      "name": "Wallet Response",
+      "nip": "47",
+      "description": "Nostr Wallet Connect response to a wallet request",
+      "behavior": "ephemeral",
+      "status": "active"
+    },
+    {
+      "kind": 24133,
+      "name": "Nostr Connect",
+      "nip": "46",
+      "description": "Remote signing protocol (NIP-46 bunker) request/response",
+      "behavior": "ephemeral",
+      "status": "active"
+    },
+    {
+      "kind": 24242,
+      "name": "Blobs Stored on Mediaservers",
+      "nip": "Blossom",
+      "description": "Authentication for Blossom media server blob storage",
+      "behavior": "ephemeral",
+      "status": "active"
+    },
+    {
+      "kind": 27235,
+      "name": "HTTP Auth",
+      "nip": "98",
+      "description": "HTTP authentication token proving identity for web requests",
+      "behavior": "ephemeral",
+      "status": "active"
+    },
+    {
+      "kind": 28934,
+      "name": "Join Request",
+      "nip": "43",
+      "description": "Request to join a NIP-43 group",
+      "behavior": "ephemeral",
+      "status": "active"
+    },
+    {
+      "kind": 28935,
+      "name": "Invite Request",
+      "nip": "43",
+      "description": "Invite a user to join a NIP-43 group",
+      "behavior": "ephemeral",
+      "status": "active"
+    },
+    {
+      "kind": 28936,
+      "name": "Leave Request",
+      "nip": "43",
+      "description": "Request to leave a NIP-43 group",
+      "behavior": "ephemeral",
+      "status": "active"
+    },
+    {
+      "kind": 30000,
+      "name": "Follow Sets",
+      "nip": "51",
+      "description": "Named sets of followed pubkeys (categorized follow lists)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30001,
+      "name": "Generic Lists",
+      "nip": "51",
+      "description": "Generic named lists (superseded by more specific list kinds)",
+      "behavior": "addressable",
+      "status": "deprecated"
+    },
+    {
+      "kind": 30002,
+      "name": "Relay Sets",
+      "nip": "51",
+      "description": "Named sets of relays",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30003,
+      "name": "Bookmark Sets",
+      "nip": "51",
+      "description": "Named sets of bookmarked content",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30004,
+      "name": "Curation Sets",
+      "nip": "51",
+      "description": "Named curated collections of articles or content",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30005,
+      "name": "Video Sets",
+      "nip": "51",
+      "description": "Named sets of video events",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30006,
+      "name": "Picture Sets",
+      "nip": "51",
+      "description": "Named sets of picture events",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30007,
+      "name": "Kind Mute Sets",
+      "nip": "51",
+      "description": "Named sets of muted event kinds",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30008,
+      "name": "Profile Badges",
+      "nip": "58",
+      "description": "Badges displayed on a user's profile",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30009,
+      "name": "Badge Definition",
+      "nip": "58",
+      "description": "Define a new badge with name, description, and image",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30015,
+      "name": "Interest Sets",
+      "nip": "51",
+      "description": "Named sets of interest topics/hashtags",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30017,
+      "name": "Create or Update a Stall",
+      "nip": "15",
+      "description": "Marketplace stall definition (merchant storefront)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30018,
+      "name": "Create or Update a Product",
+      "nip": "15",
+      "description": "Marketplace product listing",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30019,
+      "name": "Marketplace UI/UX",
+      "nip": "15",
+      "description": "Marketplace user interface and experience configuration",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30020,
+      "name": "Product Sold as Auction",
+      "nip": "15",
+      "description": "Marketplace product listed as an auction",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30023,
+      "name": "Long-form Content",
+      "nip": "23",
+      "description": "Long-form article/blog post with markdown content",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30024,
+      "name": "Draft Long-form Content",
+      "nip": "23",
+      "description": "Draft of a long-form article (not yet published)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30030,
+      "name": "Emoji Sets",
+      "nip": "51",
+      "description": "Named sets of custom emoji",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30040,
+      "name": "Curated Publication Index",
+      "nip": "NKBIP-01",
+      "description": "Index/table of contents for a curated publication",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30041,
+      "name": "Curated Publication Content",
+      "nip": "NKBIP-01",
+      "description": "Content entry in a curated publication",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30063,
+      "name": "Release Artifact Sets",
+      "nip": "51",
+      "description": "Named sets of software release artifacts",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30078,
+      "name": "Application-specific Data",
+      "nip": "78",
+      "description": "Arbitrary application-specific data stored by d-tag namespace",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30166,
+      "name": "Relay Discovery",
+      "nip": "66",
+      "description": "Relay metadata for relay discovery and monitoring",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30267,
+      "name": "App Curation Sets",
+      "nip": "51",
+      "description": "Named sets of curated applications",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30311,
+      "name": "Live Event",
+      "nip": "53",
+      "description": "Live streaming event (audio or video)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30312,
+      "name": "Interactive Room",
+      "nip": "53",
+      "description": "Interactive audio/video room (like Clubhouse/Twitter Spaces)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30313,
+      "name": "Conference Event",
+      "nip": "53",
+      "description": "Conference or multi-session event",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30315,
+      "name": "User Statuses",
+      "nip": "38",
+      "description": "User status updates (music playing, current activity, etc.)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30382,
+      "name": "User Trusted Assertion",
+      "nip": "85",
+      "description": "Trusted assertion about a user/pubkey",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30383,
+      "name": "Event Trusted Assertion",
+      "nip": "85",
+      "description": "Trusted assertion about a specific event",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30384,
+      "name": "Addressable Trusted Assertion",
+      "nip": "85",
+      "description": "Trusted assertion about an addressable event",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30388,
+      "name": "Slide Set",
+      "nip": "Corny Chat",
+      "description": "Presentation slide set for Corny Chat",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30402,
+      "name": "Classified Listing",
+      "nip": "99",
+      "description": "Classified advertisement listing",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30403,
+      "name": "Draft Classified Listing",
+      "nip": "99",
+      "description": "Draft of a classified listing (not yet published)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30617,
+      "name": "Repository Announcements",
+      "nip": "34",
+      "description": "Git repository announcement with metadata",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30618,
+      "name": "Repository State Announcements",
+      "nip": "34",
+      "description": "Git repository state (branches, HEAD, tags)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30818,
+      "name": "Wiki Article",
+      "nip": "54",
+      "description": "Wiki article with collaborative editing support",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 30819,
+      "name": "Redirects",
+      "nip": "54",
+      "description": "Redirect from one wiki article to another",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 31234,
+      "name": "Draft Event",
+      "nip": "37",
+      "description": "Generic draft event that can wrap any other event kind",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 31388,
+      "name": "Link Set",
+      "nip": "Corny Chat",
+      "description": "Set of links for Corny Chat rooms",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 31890,
+      "name": "Feed",
+      "nip": "NUD: Custom Feeds",
+      "description": "Custom feed definition with filter rules",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 31922,
+      "name": "Date-Based Calendar Event",
+      "nip": "52",
+      "description": "Calendar event spanning one or more dates (no specific time)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 31923,
+      "name": "Time-Based Calendar Event",
+      "nip": "52",
+      "description": "Calendar event with specific start/end times",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 31924,
+      "name": "Calendar",
+      "nip": "52",
+      "description": "Calendar definition containing calendar events",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 31925,
+      "name": "Calendar Event RSVP",
+      "nip": "52",
+      "description": "RSVP response to a calendar event",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 31989,
+      "name": "Handler Recommendation",
+      "nip": "89",
+      "description": "Recommend an application handler for specific event kinds",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 31990,
+      "name": "Handler Information",
+      "nip": "89",
+      "description": "Application handler metadata (name, icon, supported kinds)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 32267,
+      "name": "Software Application",
+      "nip": null,
+      "description": "Software application metadata and information",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 32388,
+      "name": "User Room Favorites",
+      "nip": "Corny Chat",
+      "description": "User's favorite rooms in Corny Chat",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 33388,
+      "name": "High Scores",
+      "nip": "Corny Chat",
+      "description": "High score entries for Corny Chat games",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 34128,
+      "name": "Legacy Nsite Manifest",
+      "nip": "5A",
+      "description": "Legacy manifest for Nostr-based website",
+      "behavior": "addressable",
+      "status": "deprecated"
+    },
+    {
+      "kind": 34235,
+      "name": "Addressable Video Event",
+      "nip": "71",
+      "description": "Addressable/updatable video event (long-form video)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 34236,
+      "name": "Addressable Short Video Event",
+      "nip": "71",
+      "description": "Addressable/updatable short-form portrait video",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 34388,
+      "name": "Sound Effects",
+      "nip": "Corny Chat",
+      "description": "Sound effect definitions for Corny Chat",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 34550,
+      "name": "Community Definition",
+      "nip": "72",
+      "description": "Define a community with rules, moderators, and metadata",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 35128,
+      "name": "Named Nsite Manifest",
+      "nip": "5A",
+      "description": "Named manifest for Nostr-based website (nsite)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 37516,
+      "name": "Geocache Listing",
+      "nip": "Geocaching",
+      "description": "Geocache listing with location and description",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 38172,
+      "name": "Cashu Mint Announcement",
+      "nip": "87",
+      "description": "Announcement of a Cashu ecash mint",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 38173,
+      "name": "Fedimint Announcement",
+      "nip": "87",
+      "description": "Announcement of a Fedimint federation",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 38383,
+      "name": "Peer-to-peer Order Events",
+      "nip": "69",
+      "description": "Peer-to-peer trading order events (buy/sell offers)",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 39000,
+      "name": "Group Metadata (Admin)",
+      "nip": "29",
+      "description": "NIP-29 group metadata managed by relay admin",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 39001,
+      "name": "Group Admins",
+      "nip": "29",
+      "description": "NIP-29 group admin list",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 39002,
+      "name": "Group Members",
+      "nip": "29",
+      "description": "NIP-29 group member list",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 39003,
+      "name": "Group Roles",
+      "nip": "29",
+      "description": "NIP-29 group role definitions",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 39089,
+      "name": "Starter Packs",
+      "nip": "51",
+      "description": "Curated starter pack of recommended follows for new users",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 39092,
+      "name": "Media Starter Packs",
+      "nip": "51",
+      "description": "Curated starter pack of recommended media follows",
+      "behavior": "addressable",
+      "status": "active"
+    },
+    {
+      "kind": 39701,
+      "name": "Web Bookmarks",
+      "nip": "B0",
+      "description": "Web bookmarks collection with URLs and metadata",
+      "behavior": "addressable",
+      "status": "active"
+    }
+  ]
+}
