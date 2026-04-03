@@ -8,7 +8,7 @@
 
 | Phase | Name | Status | Key Deliverables |
 |-------|------|--------|-----------------|
-| **1** | Design & Specification | **Complete** | Draft spec, threat model, decisions log, agent brains |
+| **1** | Design & Specification | **Complete** | Draft spec, threat model, decisions log, domain knowledge bases |
 | **2** | Formal Analysis & Security Review | **Complete** | Encryption analysis, TLA+ model, adversarial review, economic analysis |
 | **3** | Reference Implementation & Test Vectors | **Complete** | TypeScript impl (2,810 lines), test suite (1,689 lines), test vectors (1,378 lines) |
 | **4** | Second Implementation & Interop Testing | **Complete** | Go impl (1,039 lines), Go tests (1,636 lines), interop CLI (998 lines), 10 divergences, 10 amendments |
@@ -62,7 +62,7 @@
 - [x] Delivery state machine analysis (TLA+ — 6 properties, 6 failure scenarios)
 - [x] Adversarial security review (15 findings: 2 Critical, 4 High, 6 Medium, 2 Low, 1 Info)
 - [x] Economic attack analysis (10 attack vectors, cost models, equilibrium analysis)
-- [x] All 15 agent brain knowledge bases populated (42 knowledge files, ~14K lines)
+- [x] All 15 domain knowledge bases populated (42 knowledge files, ~14K lines)
 - [x] Review checklists created (crypto, protocol, security, formal methods)
 - [x] Critical findings incorporated into spec:
   - DEC-006: P2PK Cashu tokens mandatory (fixes Critical double-spend)

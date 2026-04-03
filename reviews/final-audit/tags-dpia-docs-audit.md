@@ -1,7 +1,7 @@
 # H3.5 / H3.6 / H3.7 — Tags, DPIA, and Documentation Audit
 
 Date: 2026-04-01
-Auditor: Claude Opus 4.6 (automated)
+Auditor: Automated analysis
 Scope: Tag collision check, GDPR DPIA, documentation completeness
 
 ---
