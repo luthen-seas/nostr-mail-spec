@@ -1,6 +1,6 @@
 # Roadmap — Development Phases and Milestones
 
-> **Current Phase: Phase 3 Complete — Ready for Phase 4**
+> **Current Phase: Phase 8 — Pre-Submission Hardening Complete. Ready for NIP PR.**
 
 ---
 
@@ -15,12 +15,9 @@
 | **5** | Bridge & Email Integration | **Complete** | SMTP↔NOSTR bridge (2,653 lines), Docker deployment |
 | **6** | Client & Usability Testing | **Complete** | SvelteKit reference client (2,966 lines), onboarding flow |
 | **7** | Public Review & NIP Submission | **Complete** | NIP-XX draft (1,221 lines), all amendments applied |
-| 3 | Reference Implementation & Test Vectors | Not Started | Working code, test vectors, conformance suite |
-| 4 | Second Implementation & Interop | Not Started | Independent impl, 100% interop |
-| 5 | Bridge & Email Integration | Not Started | SMTP↔NOSTR gateway |
-| 6 | Client & Usability Testing | Not Started | Reference client, usability studies |
-| 7 | Public Review & NIP Submission | Not Started | NIP PR, community review |
-| 8 | Ecosystem Growth | Not Started | SDKs, docs, third-party clients |
+| **8** | Pre-Submission Hardening | **Complete** | 5 blocking fixes (message-id, state partitioning, RFC 2119, inline vectors, conformance), 6 high-priority fixes, 6 medium fixes, DEC-012 through DEC-016 |
+| 9 | NIP PR Submission | Not Started | Submit PR to nostr-protocol/nips |
+| 10 | Ecosystem Growth | Not Started | SDKs, docs, third-party clients |
 
 ---
 

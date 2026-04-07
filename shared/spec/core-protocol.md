@@ -1,6 +1,6 @@
 # NOSTR Mail — Core Protocol Specification (Living Draft)
 
-> **Status: Pre-Draft — Design phase. Not yet submitted as a NIP.**
+> **Status: Pre-Submission — Phase 8 hardening complete. Ready for NIP PR.**
 
 ---
 
@@ -46,14 +46,14 @@ NOSTR Mail is a protocol for asynchronous, encrypted, self-sovereign messaging b
 
 | Kind | Name | Category | Description |
 |------|------|----------|-------------|
-| 15 | Mail Message | Rumor (unsigned) | The mail content, sealed and wrapped |
-| 16 | Mail Receipt | Rumor (unsigned) | Delivery/read confirmations |
+| 1400 | Mail Message | Rumor (unsigned) | The mail content, sealed and wrapped. Includes `message-id` tag for stable identity. |
+| 1401 | Mail Receipt | Rumor (unsigned) | Delivery/read confirmations |
 | 13 | Seal | Regular | NIP-59 encrypted rumor layer |
 | 1059 | Gift Wrap | Regular | NIP-59 outer encrypted layer |
 | 10050 | DM Relay List | Replaceable | User's inbox relays |
 | 10097 | Spam Policy | Replaceable | User's anti-spam configuration |
 | 10098 | Auto-Responder | Replaceable | Out-of-office configuration |
-| 10099 | Mailbox State | Addressable | Read/flagged/folder state |
+| 30099 | Mailbox State | Addressable | Read/flagged/folder state, partitioned by month (`d` = `YYYY-MM`) |
 | 30016 | Mail Draft | Addressable | Encrypted draft messages |
 | 39000 | Mailing List | Addressable | Distribution list definition |
 
