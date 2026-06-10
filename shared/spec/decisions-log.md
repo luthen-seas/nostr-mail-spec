@@ -44,7 +44,7 @@
 **Date**: 2026-04-01
 **Status**: Active
 **Decided by**: Protocol Architect, Payment Specialist, Crypto Designer
-**Decision**: Cashu anti-spam tokens are placed inside the encrypted rumor (kind 15 tags), not as visible tags on the gift wrap.
+**Decision**: Cashu anti-spam tokens are placed inside the encrypted rumor (kind 15 tags), not as visible tags on the gift wrap. *Note: kind 15 was renumbered to kind 1400 per OQ-001 resolution; this entry is preserved as historical record. The "rumor tags" claim still applies — Cashu tags live inside the rumor body regardless of the kind number.*
 **Context**: If tokens are outside encryption, relays can see payment amounts and patterns, degrading privacy.
 **Alternatives considered**: (A) Token as visible tag on gift wrap. (B) Token inside encrypted rumor. (C) Separate payment event.
 **Rationale**: Option B preserves maximum privacy — the relay sees nothing about the payment. Option A leaks economic metadata. Option C adds protocol complexity.
@@ -62,13 +62,13 @@
 
 ### DEC-005: Mailbox State as Replaceable Events, Not IMAP-Style Flags
 **Date**: 2026-04-01
-**Status**: Active
+**Status**: Active — partially superseded by DEC-013 (kind number and partitioning)
 **Decided by**: Protocol Architect, Distributed Systems Engineer
 **Decision**: Mail state (read, flagged, folders) is stored as replaceable NOSTR events (kind 10099), not as per-message flags.
 **Context**: IMAP manages state per-connection with complex sync. NOSTR's replaceable events provide natural multi-device sync with last-write-wins semantics.
 **Alternatives considered**: (A) Per-message state events (one event per read receipt). (B) Single replaceable state event. (C) CRDT-based state.
 **Rationale**: Option B is simplest. Replaceable events have proven semantics in NOSTR. Option A generates too many events. Option C is unnecessarily complex for V1.
-**Implications**: State event grows with mailbox size. Need partitioning strategy for large mailboxes. See open question OQ-003.
+**Implications**: State event grows with mailbox size. Need partitioning strategy for large mailboxes. See open question OQ-003. **Kind number and partitioning superseded by DEC-013 (kind 30099 addressable, monthly `d=YYYY-MM` partitions, NIP-44-encrypted JSON content). CRDT semantics (G-Set for reads/deleted, LWW for flags/folders) remain in effect under DEC-013.**
 
 ---
 
@@ -177,6 +177,46 @@
 **Decision**: Clients SHOULD introduce a random publication delay of 0-60 seconds (CSPRNG, uniform) before publishing each gift wrap. Maximum delay MUST NOT exceed 300 seconds.
 **Context**: Red team analysis demonstrated that network-level timing correlation is the dominant deanonymization vector, more powerful than the ±2-day timestamp randomization (which only protects the `created_at` metadata field, not the actual relay arrival time).
 **Implications**: Adds latency to message delivery. Clients may offer a "send immediately" option for time-sensitive messages, with a privacy trade-off warning.
+
+### DEC-021: Cashu Postage Value Is Taken From the Verified Token, Never the Advisory Tags
+**Date**: 2026-06-09
+**Status**: Active
+**Decided by**: Foundational Security Audit
+**Decision**: When evaluating anti-spam Tier 1, the authoritative postage amount MUST be the sum of the decoded token's proof amounts, and the authoritative mint MUST be the token's embedded mint URL. The `cashu-amount` and `cashu-mint` rumor tags are advisory display hints ONLY and MUST NOT be used to satisfy the minimum-sats threshold or the accepted-mint allowlist. A token MUST be P2PK-locked to the recipient; bearer tokens are rejected.
+**Context**: The advisory `cashu-amount`/`cashu-mint` tags sit outside the encrypted, signed token and are fully attacker-controlled (finding F-SPAM-01). Trusting them let an attacker mint a 1-sat token, tag it `100000`, and clear any economic barrier — collapsing the anti-spam guarantee to the smallest mintable denomination.
+**Implications**: `verifyPostageStructure`/`VerifyP2PKLock` return the verified summed amount; `evaluateSpamTier`/`EvaluateTier` gate on it. Conformance spam vectors are regenerated with real cashuB tokens. Both reference implementations updated in lockstep with forged-amount/forged-mint regression tests.
+
+### DEC-022: Invalid Seal Signature Is a Hard Rejection in Both Implementations
+**Date**: 2026-06-09
+**Status**: Active
+**Decided by**: Foundational Security Audit
+**Decision**: On unwrap, an invalid or unverifiable kind-13 seal signature MUST cause the operation to fail (return an error / throw) and return no rumor. A "decrypted but unsigned" result MUST NOT be surfaced to callers. The inner rumor's kind MUST equal 1400.
+**Context**: The Go implementation returned the rumor with `err == nil` and a soft `verified=false` bool on an invalid signature, which the idiomatic caller `rumor, _, _, err := UnwrapMail(...)` silently accepted — a NIP-59 spec violation and a TS/Go consensus split (TS threw) on a security-critical path (finding F-UNWRAP-GO-01).
+**Implications**: `UnwrapMail` now returns an error on bad signature and on `kind != 1400`. NIP-44's AEAD already prevents cross-identity impersonation, so this is defense-in-depth + cross-implementation agreement, both required for a foundational interop substrate.
+
+### DEC-023: Mailbox-State Folder LWW Uses (created_at, id) With NIP-01 Tiebreak; Future-Dated Events Rejected
+**Date**: 2026-06-09
+**Status**: Active (refines DEC-010, DEC-013, DEC-020)
+**Decided by**: Foundational Security Audit
+**Decision**: Folder conflicts in kind-30099 state merge resolve by the source event's `created_at`; on a tie, the lexicographically LOWER event `id` wins (NIP-01 replaceable-event rule). Merge MUST be order-independent. Ingestion MUST reject any kind-30099 event whose `created_at` is more than 3600s in the future. Decoded payloads MUST bound element counts and per-id length.
+**Context**: The prior merge resolved folders by "argument b wins" with no clock and no future-date check (finding F-STATE-01), letting a relay-injected far-future event win folder placement permanently, and allowing unbounded payload growth that re-propagates via the G-Set union (F-STATE-02).
+**Implications**: `MailboxState` carries the source event's `(createdAt, id)`; `mergeStates`/`Merge` are deterministic; `isStateTimestampAcceptable`/`TimestampAcceptable` guard ingestion; `payloadToState`/`FromPayload` enforce bounds. TS now sorts serialized payloads to match Go's byte-stable output (AMEND-008 / F-DET-01).
+
+### DEC-024: Threading Algorithm Unified; Cyclic/Colliding References Are Surfaced, Not Dropped
+**Date**: 2026-06-09
+**Status**: Active (refines DEC-012, AMEND-007)
+**Decided by**: Foundational Security Audit
+**Decision**: Both implementations MUST treat a message with a `thread` tag but no `reply` tag as a reply to the thread root. A colliding `message-id` MUST be resolved keep-first (it MUST NOT displace an existing node). A reply reference that would form a cycle MUST cause the node to be surfaced as a root rather than dropped or recursed into. Orphan/missing-parent detection MUST key on the same identity (`message-id`, falling back to event id) that tree-building uses.
+**Context**: TS ignored the thread-tag fallback that Go applied (identical input → different trees: a consensus split, F-THREAD-01), cyclic/self-referential replies were silently dropped (F-THREAD-02), and Go's orphan detection keyed on event id while building keyed on message-id (spurious refetch loops, M-4).
+**Implications**: Deterministic, identical tree construction across implementations; no silent message loss; cycle-safe traversal.
+
+### DEC-025: Bridge Inbound Authentication and SSRF Hardening (Operational)
+**Date**: 2026-06-09
+**Status**: Active
+**Decided by**: Foundational Security Audit
+**Decision**: The SMTP↔Nostr bridge MUST verify SPF/DKIM/DMARC locally and require a DMARC `pass` for inbound mail by default (fail-closed); upstream `Authentication-Results` are honored only when an explicit trusted authserv-id is configured. Every outbound request whose host derives from untrusted input (NIP-05 domains, relay hints, Blossom URLs) MUST be rejected if it resolves to a private/loopback/link-local/metadata address, and downloads MUST be size-bounded.
+**Context**: The bridge accepted inbound mail with no cryptographic authentication (full `From` spoofing, F-DKIM-01) and performed unrestricted server-side fetches/WebSocket connections to attacker-chosen hosts (SSRF to cloud metadata / internal services, F-SSRF-01/02).
+**Implications**: `requireAuth` defaults true; `mailauth` integration; an SSRF guard module gates all untrusted-host requests; `sanitize-html` is a hard, fail-closed dependency (the bypassable regex fallback is removed from the live path).
 
 ---
 
