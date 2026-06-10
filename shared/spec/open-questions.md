@@ -29,7 +29,7 @@
 
 ### OQ-002: Should forward secrecy be a V1 goal or deferred?
 **Assigned to**: Crypto Designer, Protocol Architect
-**Status**: Open
+**Status**: Deferred to V2 — design proposal in `design/forward-secrecy-and-key-rotation.md` (X3DH prekey bundles + symmetric ratchet, option B)
 **Priority**: High
 **Context**: NIP-44 uses static ECDH — no forward secrecy. Adding it requires X3DH-style pre-published key bundles or a ratcheting protocol, significantly increasing complexity.
 **Options**: (A) Defer to V2 — accept static ECDH for V1. (B) Optional X3DH extension in V1. (C) Mandatory X3DH for all mail.
@@ -142,7 +142,7 @@
 
 ### OQ-015: How should key rotation work for NOSTR Mail specifically?
 **Assigned to**: Crypto Designer, Protocol Architect
-**Status**: Open
+**Status**: Deferred to V2 — design proposal in `design/forward-secrecy-and-key-rotation.md` (bidirectional rotation attestation + pre-committed recovery binding; history via archived read-only old key, OQ-009)
 **Priority**: High
 **Context**: Phase 2 adversarial review (FINDING-015) identified a High-severity mail interception risk during key rotation. Need a protocol for announcing new key, transitioning, and handling messages to old key.
 **Options**: (A) Signed key rotation event (old key signs pointer to new key). (B) NIP-05 update + kind 0 metadata update. (C) Both A and B. (D) No formal protocol, manual migration.
