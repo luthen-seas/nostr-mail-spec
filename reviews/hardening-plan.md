@@ -17,7 +17,7 @@
 - 0 TypeScript compile errors (both SDK and bridge)
 - 0 GPL contamination (all deps MIT/Apache/ISC/BSD)
 - 0 strict-mode errors
-- Kind numbers verified free: 1400, 1401, 10097, 10099, 30016
+- Kind numbers verified free: 1400, 1401, 10097, 30099, 30016
 - Tag names verified compatible: `subject` (NIP-14), no collisions on `reply`, `thread`, `cashu`, `folder`, `message-id`
 
 ---
@@ -87,7 +87,7 @@ Verify kind 1400 and 1112 are not already assigned.
 | [ ] H1.4.2 | Check nostr-protocol/nips kind registry | Kind 1401 not in the kind table |
 | [ ] H1.4.3 | Search GitHub for "kind 1400" or "kind 1401" in NOSTR repos | No prior claims |
 | [ ] H1.4.4 | Check kind 10097 (spam policy) not assigned | Not in registry |
-| [ ] H1.4.5 | Check kind 10099 (mailbox state) not assigned | Not in registry |
+| [ ] H1.4.5 | Check kind 30099 (mailbox state, addressable) not assigned | Not in registry |
 | [ ] H1.4.6 | Check kind 30016 (draft) not assigned | Not in registry |
 
 **On failure**: Choose different kind numbers and update across all repos.
@@ -151,7 +151,7 @@ Verify our events don't break existing clients.
 | [ ] H2.3.1 | Publish a kind 1400 event (gift-wrapped as 1059) to a public relay | Event accepted by relay |
 | [ ] H2.3.2 | Verify Damus/Amethyst/Gossip don't crash on kind 1400 | Unknown kinds are silently ignored |
 | [ ] H2.3.3 | Verify kind 10097 (spam policy) is stored by relays as replaceable | Relay handles it as 10000-19999 range |
-| [ ] H2.3.4 | Verify kind 10099 (mailbox state) works as replaceable on relays | Latest replaces prior |
+| [ ] H2.3.4 | Verify kind 30099 (mailbox state) works as addressable on relays | d-tag addressing works; partition events do not overwrite each other |
 | [ ] H2.3.5 | Verify kind 30016 (draft) works as addressable on relays | d-tag addressing works |
 
 ### H2.4: Dependency License Audit

@@ -1,5 +1,8 @@
 # NOSTR Mail Anti-Spam: Economic Attack Analysis
 
+> **Note:** This review was performed against the pre-DEC-015 5-tier anti-spam design (Contact → NIP-05 → PoW → Cashu → L402 → Quarantine). After tier collapse to 3 tiers (Contact + Cashu + Quarantine), findings related to NIP-13 PoW (FINDING-009 etc.) and NIP-05 trust signaling (FINDING-004 etc.) are MOOTED by feature removal. See `shared/spec/threat-model.md` § Phase 2 Review Summary for the reconciled status.
+
+
 **Document type**: Security Assessment  
 **Scope**: Economic viability and attack resistance of the NOSTR Mail anti-spam payment mechanism  
 **System components assessed**: Cashu ecash postage, L402 relay gating, NIP-13 proof-of-work, refundable postage, dynamic pricing (kind 10097)  

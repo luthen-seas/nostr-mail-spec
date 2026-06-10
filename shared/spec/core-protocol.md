@@ -1,6 +1,6 @@
 # NOSTR Mail — Core Protocol Specification (Living Draft)
 
-> **Status: Pre-Submission — Phase 8 hardening complete. Ready for NIP PR.**
+> **Status — pre-submission audit in progress. Spec, NIP draft, and reference impls are being reconciled before public review.**
 
 ---
 
@@ -25,22 +25,26 @@ NOSTR Mail is a protocol for asynchronous, encrypted, self-sovereign messaging b
 | NIP | Name | Role |
 |-----|------|------|
 | NIP-01 | Basic Protocol | Event structure, relay protocol |
-| NIP-02 | Follow List | Contact list (address book, spam bypass) |
-| NIP-05 | DNS Identifiers | Human-readable mail addresses |
-| NIP-09 | Event Deletion | Delete sent/received messages |
-| NIP-13 | Proof of Work | Free-tier anti-spam |
+| NIP-02 | Follow List | Kind 3 contact list — source for tier-0 anti-spam evaluation |
+| NIP-05 | DNS Identifiers | Address resolution only — NOT a trust signal |
+| NIP-09 | Event Deletion | Delete sent/received gift wraps |
 | NIP-14 | Subject Tag | Mail subject lines |
-| NIP-17 | Private DMs | Foundation for encrypted messaging |
+| NIP-17 | Private DMs | Foundation for encrypted messaging; kind 10050 DM relay list |
 | NIP-42 | Authentication | Relay access control |
-| NIP-44 | Encryption | Content encryption (ChaCha20/HMAC) |
-| NIP-47 | Wallet Connect | Lightning payment integration |
-| NIP-51 | Lists | Mute/block lists |
-| NIP-57 | Zaps | Payment verification |
-| NIP-59 | Gift Wrap | Metadata-hiding envelope encryption |
-| NIP-60 | Cashu Wallet | Ecash token management |
+| NIP-44 | Encryption | Content encryption (ChaCha20/HMAC-SHA256) |
+| NIP-59 | Gift Wrap | Three-layer metadata-hiding envelope |
 | NIP-65 | Relay Lists | Mail routing (outbox model) |
-| NIP-B7 | Blossom | Decentralized file attachments |
 | NIP-94 | File Metadata | Attachment metadata |
+
+### Optional dependencies
+
+| NIP | Name | Role |
+|-----|------|------|
+| NIP-B7 | Blossom | Decentralized file attachments. Clients without Blossom MAY omit attachment functionality; the core mail protocol does not depend on Blossom. |
+
+### Removed dependencies (post-DEC-015 simplification)
+
+NIP-13 (PoW) and NIP-05-as-trust-signal were both removed from the tier model in Phase 8. The 5-tier scheme (Contact → NIP-05 → PoW → Cashu → L402) collapsed to 3 tiers (Contact → Cashu → Quarantine). NIP-47 (NWC), NIP-51 (Lists), NIP-57 (Zaps), and NIP-60 (Cashu Wallet) are also no longer dependencies of the core mail protocol; clients MAY use them for wallet integration but the protocol does not require them.
 
 ## Event Kinds (Proposed)
 
@@ -48,14 +52,19 @@ NOSTR Mail is a protocol for asynchronous, encrypted, self-sovereign messaging b
 |------|------|----------|-------------|
 | 1400 | Mail Message | Rumor (unsigned) | The mail content, sealed and wrapped. Includes `message-id` tag for stable identity. |
 | 1401 | Mail Receipt | Rumor (unsigned) | Delivery/read confirmations |
-| 13 | Seal | Regular | NIP-59 encrypted rumor layer |
-| 1059 | Gift Wrap | Regular | NIP-59 outer encrypted layer |
-| 10050 | DM Relay List | Replaceable | User's inbox relays |
-| 10097 | Spam Policy | Replaceable | User's anti-spam configuration |
-| 10098 | Auto-Responder | Replaceable | Out-of-office configuration |
-| 30099 | Mailbox State | Addressable | Read/flagged/folder state, partitioned by month (`d` = `YYYY-MM`) |
+| 10050 | DM Relay List | Replaceable | User's inbox relays (NIP-17 inheritance) |
+| 10097 | Spam Policy | Replaceable | User's anti-spam configuration (PUBLIC, unencrypted) |
+| 30099 | Mailbox State | Addressable | Read/flagged/folder state, partitioned by month (`d` = `YYYY-MM`). Encrypted JSON content; only `d` tag visible. |
 | 30016 | Mail Draft | Addressable | Encrypted draft messages |
-| 39000 | Mailing List | Addressable | Distribution list definition |
+
+Kinds 13 (Seal) and 1059 (Gift Wrap) are NIP-59 inheritance and are not introduced by this NIP.
+
+### Future kinds (out of V1 scope)
+
+| Kind | Name | Status |
+|------|------|--------|
+| 10098 | Auto-Responder | Future — out-of-office configuration. Not specified in V1. |
+| 39000 | Mailing List | Future — distribution list definition. Not specified in V1. |
 
 ## Open Questions
 
@@ -64,7 +73,7 @@ See [open-questions.md](open-questions.md) for unresolved design decisions.
 ## Detailed Specification
 
 See [/design/](../../design/) for the full design documents:
-- [Message Format](../../email/message-format.md)
-- [Encryption & Privacy](../../email/encryption-privacy.md)
-- [Micropayments Anti-Spam](../../email/micropayments-anti-spam.md)
-- [Protocol Stack](../../email/protocol-stack.md)
+- [Message Format](../../design/message-format.md)
+- [Encryption & Privacy](../../design/encryption-privacy.md)
+- [Micropayments Anti-Spam](../../design/micropayments-anti-spam.md)
+- [Protocol Stack](../../design/protocol-stack.md)

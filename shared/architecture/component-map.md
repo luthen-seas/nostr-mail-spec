@@ -9,7 +9,7 @@
 | Component | Primary Owner | Required Reviewers | Description |
 |-----------|--------------|-------------------|-------------|
 | **Core Protocol** | | | |
-| Event kind definitions | Protocol Architect | Crypto Designer, Standards Writer | Kind 15, 16, 10097, 10098, 10099, 30015, 39000 |
+| Event kind definitions | Protocol Architect | Crypto Designer, Standards Writer | Kind 1400, 1401, 10050, 10097, 30099, 30016 (V1). 10098 / 39000 deferred to future. |
 | Tag conventions | Protocol Architect | Email Expert, Standards Writer | All tag formats and semantics |
 | Threading model | Protocol Architect | Email Expert, UX Designer | Reply/thread tag conventions |
 | Extension mechanism | Protocol Architect | Standards Writer | How future features are added |
@@ -20,10 +20,10 @@
 | Key management | Crypto Designer | UX Designer, Adversarial Security | NIP-07/46/55 integration, key rotation |
 | **Anti-Spam** | | | |
 | Cashu token format | Payment Specialist | Crypto Designer, Adversarial Security | Token attachment, verification, redemption |
-| L402 relay gating | Payment Specialist | Relay Operator, Crypto Designer | Invoice generation, macaroon verification |
-| PoW requirements | Protocol Architect | Adversarial Security | NIP-13 difficulty calibration |
+| L402 relay gating | Payment Specialist | Relay Operator, Crypto Designer | Optional relay-level rate limiting via L402. Not part of the core tier evaluation post-DEC-015. |
+| ~~PoW requirements~~ | ~~Protocol Architect~~ | ~~Adversarial Security~~ | *Removed in DEC-015 — PoW is no longer a tier in the V1 anti-spam model.* |
 | Spam policy event | Protocol Architect | Payment Specialist, UX Designer | Kind 10097 format and semantics |
-| Tier evaluation logic | Payment Specialist | Adversarial Security | Contact → NIP-05 → PoW → Cashu → L402 |
+| Tier evaluation logic | Payment Specialist | Adversarial Security | Contact (kind 3) → Cashu P2PK → Quarantine. PoW and NIP-05-as-trust-signal removed in DEC-015. |
 | Refundable postage | Payment Specialist | UX Designer | Refund flow and UX |
 | **Delivery** | | | |
 | Relay selection (outbox) | Distributed Systems | Relay Operator | How senders find recipient relays |
@@ -31,7 +31,7 @@
 | Push notifications | Distributed Systems | UX Designer | Real-time delivery to clients |
 | Inbox relay spec | Relay Operator | Protocol Architect | Storage, AUTH, rate limiting requirements |
 | **State & Sync** | | | |
-| Mailbox state format | Distributed Systems | Protocol Architect | Kind 10099 structure and partitioning |
+| Mailbox state format | Distributed Systems | Protocol Architect | Kind 30099 (addressable) with `d=YYYY-MM` partition; NIP-44-encrypted JSON content; only `d` tag visible. |
 | Multi-device sync | Distributed Systems | Systems Programmer | Conflict resolution, delta sync |
 | Draft storage | Protocol Architect | Distributed Systems | Kind 30016 format |
 | **Attachments** | | | |
