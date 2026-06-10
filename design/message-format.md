@@ -2,6 +2,8 @@
 
 > **The mail-specific NIP: event structure, threading, CC/BCC, attachments, read receipts, and how NOSTR events replace MIME.**
 
+> **Note:** This design document predates the kind renumbering. Where it references `kind 15`, read `kind 1400`. Where it references `kind 16`, read `kind 1401`. Where it references `kind 10099`, read `kind 30099` (addressable, monthly partition, NIP-44-encrypted JSON content per DEC-013). The canonical authoritative reference is the NIP draft at `nostr-mail-nip/nip-xx-nostr-mail.md`.
+
 ---
 
 ## Table of Contents

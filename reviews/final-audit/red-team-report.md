@@ -1,5 +1,8 @@
 # Red Team Report: NOSTR Mail Protocol
 
+> **Note:** This review was performed against the pre-DEC-015 5-tier anti-spam design (Contact → NIP-05 → PoW → Cashu → L402 → Quarantine). After tier collapse to 3 tiers (Contact + Cashu + Quarantine), findings related to NIP-13 PoW (FINDING-009 etc.) and NIP-05 trust signaling (FINDING-004 etc.) are MOOTED by feature removal. See `shared/spec/threat-model.md` § Phase 2 Review Summary for the reconciled status.
+
+
 **Date:** 2026-04-01
 **Scope:** NIP-XX spec, nostr-mail-ts implementation, nostr-mail-bridge sanitizer
 **Posture:** Adversarial. All attacks were executed against the actual code and spec, not theoretical.

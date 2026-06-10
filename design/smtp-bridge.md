@@ -2,6 +2,8 @@
 
 > **How NOSTR Mail can send to and receive from traditional email addresses during the transition period, using a bidirectional SMTP↔NOSTR gateway.**
 
+> **Note:** This design document predates the kind renumbering. Where it references `kind 15`, read `kind 1400`. Where it references `kind 16`, read `kind 1401`. The bridge implementation emits `bridged-auth` tags as `["bridged-auth", "spf=<result>", "dkim=<result>", "dmarc=<result>"]` (equals-sign tokens); any colon-format examples in this document are stale. The canonical reference is the NIP draft at `nostr-mail-nip/nip-xx-nostr-mail.md`.
+
 ---
 
 ## Table of Contents

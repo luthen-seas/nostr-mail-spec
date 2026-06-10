@@ -1,6 +1,6 @@
 # Roadmap — Development Phases and Milestones
 
-> **Current Phase: Phase 8 — Pre-Submission Hardening Complete. Ready for NIP PR.**
+> **Current Phase: pre-submission audit in progress. Spec, NIP draft, and reference implementations are being reconciled before public review. Phases 5-8 have substantial deliverables remaining; see per-phase checklists below for accurate status.**
 
 ---
 
@@ -12,10 +12,10 @@
 | **2** | Formal Analysis & Security Review | **Complete** | Encryption analysis, TLA+ model, adversarial review, economic analysis |
 | **3** | Reference Implementation & Test Vectors | **Complete** | TypeScript impl (2,810 lines), test suite (1,689 lines), test vectors (1,378 lines) |
 | **4** | Second Implementation & Interop Testing | **Complete** | Go impl (1,039 lines), Go tests (1,636 lines), interop CLI (998 lines), 10 divergences, 10 amendments |
-| **5** | Bridge & Email Integration | **Complete** | SMTP↔NOSTR bridge (2,653 lines), Docker deployment |
-| **6** | Client & Usability Testing | **Complete** | SvelteKit reference client (2,966 lines), onboarding flow |
-| **7** | Public Review & NIP Submission | **Complete** | NIP-XX draft (1,221 lines), all amendments applied |
-| **8** | Pre-Submission Hardening | **Complete** | 5 blocking fixes (message-id, state partitioning, RFC 2119, inline vectors, conformance), 6 high-priority fixes, 6 medium fixes, DEC-012 through DEC-016 |
+| **5** | Bridge & Email Integration | **In Progress** | SMTP↔NOSTR bridge (2,653 lines) shipped; SMTP hardening, attachment encryption, auth-results trust boundary, replay/loop protection, end-to-end live testing remain. |
+| **6** | Client & Usability Testing | **In Progress** | SvelteKit reference client (2,966 lines) shipped; mailbox-state encryption, sanitization defense-in-depth, CSP, message-id keying everywhere, spam-policy publish, usability testing remain. |
+| **7** | Public Review & NIP Submission | **In Progress** | NIP-XX draft shipped and revised through audit; PR not yet submitted. |
+| **8** | Pre-Submission Hardening | **In Progress** | DEC-012 through DEC-016 captured. Audit found additional drift; remediation in progress. |
 | 9 | NIP PR Submission | Not Started | Submit PR to nostr-protocol/nips |
 | 10 | Ecosystem Growth | Not Started | SDKs, docs, third-party clients |
 

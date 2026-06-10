@@ -2,6 +2,8 @@
 
 > **Economic spam prevention: how Lightning payments and ecash tokens replace reputation systems, ML filters, and the $2B deliverability industry.**
 
+> **Note:** This document was authored against the pre-DEC-015 5-tier anti-spam design (Contact → NIP-05 → PoW → Cashu → L402). The current V1 model is 3 tiers: Contact → Cashu → Quarantine. PoW and NIP-05 were removed because (a) GPU/ASIC availability defeats PoW economics at scale, (b) NIP-05 is a domain-controlled identifier, not a trust signal. The canonical reference is the NIP draft at `nostr-mail-nip/nip-xx-nostr-mail.md`.
+
 ---
 
 ## Table of Contents

@@ -2,6 +2,8 @@
 
 > **How NIP-44, NIP-59 Gift Wrap, and ephemeral keys provide content encryption, metadata hiding, and deniability — things email has never achieved.**
 
+> **Note:** This design document predates the kind renumbering. Where it references `kind 15`, read `kind 1400`. Where it references `kind 10099`, read `kind 30099` (addressable, monthly partition, NIP-44-encrypted JSON content per DEC-013). The canonical authoritative reference is the NIP draft at `nostr-mail-nip/nip-xx-nostr-mail.md`.
+
 ---
 
 ## Table of Contents
